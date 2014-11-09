@@ -8,34 +8,43 @@
 <h:head></h:head> 
 <body>
 
+<p:panel id="panel" header="2wd-Login">
+<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
+    <p:panel>
+        <h:graphicImage  value="/images/login.jpg" />  
+    </p:panel>
+ 
+    <h:form>
+    <p:panel id="panel" header="Sign in" style="width:515px;">
 
-	<h:graphicImage  value="/images/login.jpg" />  
-	
-	<h:form>
-    <p:panel id="panel" header="2wd-Login">
- 
-        <p:messages id="msgs" />
- 
         <h:panelGrid columns="3" cellpadding="5">
             <p:outputLabel for="username" value="Username:" />
-            <p:inputText id="username" value="#{desktopLogin.username}" required="true" label="Username">
-                <f:validateLength minimum="2" />
+            <p:inputText id="username" value="#{validation.username}" required="true" label="Username">
             </p:inputText>
             <p:message for="username" display="icon" />
  
             <p:outputLabel for="password" value="Password:" />
-            <p:inputText id="password" value="#{desktopLogin.password}" label="Password" required="true">
-                <f:validateLength minimum="2" />
+            <p:password id="password" value="#{validation.password}" label="Password" required="true">
                 <p:ajax update="msgPassword" event="keyup" />
-            </p:inputText>
+            </p:password>
             <p:message for="password" id="msgPassword" display="icon" />
  
         </h:panelGrid>
- 
-        <p:commandButton value="Login" update="panel" actionListener="#{desktopLogin.login}" icon="ui-icon-check" />
+ 		
+ 		<h:panelGrid columns="2" cellpadding="1">
+        	<p:commandButton value="Submit" update="panel" actionListener="#{validation.login}" icon="ui-icon-check" />
+        	<p:messages id="msgs" />
+        </h:panelGrid>
     </p:panel>
-</h:form>
+    </h:form>
+</h:panelGrid>
+</p:panel>
 
+	
+	
+	
+	
+	
  </body> 
-
+ 
 </html>
