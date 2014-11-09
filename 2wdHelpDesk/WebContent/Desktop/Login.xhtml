@@ -1,17 +1,41 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
 <body>
 
-<h1><center>Log In</center></h1>
-<form><center>
-<p>Username: <input type="text" name="firstname"></input></p><br></br>
-<p>Password: <input type="text" name="lastname"></input></p>
-<input type="submit" value="Submit"></input>
-</center>
-</form> 
 
+	<h:graphicImage  value="/images/login.jpg" />  
+	
+	<h:form>
+    <p:panel id="panel" header="2wd-Login">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="username" value="Username:" />
+            <p:inputText id="username" value="#{desktopLogin.username}" required="true" label="Username">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="username" display="icon" />
+ 
+            <p:outputLabel for="password" value="Password:" />
+            <p:inputText id="password" value="#{desktopLogin.password}" label="Password" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgPassword" event="keyup" />
+            </p:inputText>
+            <p:message for="password" id="msgPassword" display="icon" />
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton value="Login" update="panel" actionListener="#{desktopLogin.login}" icon="ui-icon-check" />
+    </p:panel>
+</h:form>
 
-</body>
+ </body> 
+
 </html>
