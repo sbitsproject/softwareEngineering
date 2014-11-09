@@ -67,7 +67,6 @@ public class driver
 		}
 	}
 	
-	//retrieve a SINGLE value from a column in a table.
 	//returns the SINGLE value from a column in a table.
 	//if value does not exist, or there is an error, return NULL.
 	public String retrieve_from_table(String TABLE, String VALUE, String COLUMN)
@@ -95,8 +94,47 @@ public class driver
 		return null;
 	}
 	
-	//NOTE: this method has not been tested yet.
-	//return the number rows in a table (I am not sure how practical this is) as integer
+	//returns a SINGLE value from a column in a table.
+	//Pass in table name, an array of values, and an array of columns
+	//Both arrays must have the same length && both arrays should have an array size of at least n >= 1
+	//the first index of COLUMN and VALUE is what will be returned if found in the table
+	//Note: all indices of COLUMN should be valid table columns
+	//if value does not exist, or there is an error, return NULL.
+	public String retrieve_from_table(String TABLE, String[] VALUE, String[] COLUMN)
+	{
+		if(VALUE.length != COLUMN.length) return null; // both arrays must have the same length
+		try
+		{
+			String combined = "";
+			for( int i = 0; i < VALUE.length; i++)
+			{
+				if(i == 0)	
+					combined = combined + " " + COLUMN[i] + "=" + "'" + VALUE[i] + "'";
+				else
+					combined = combined + " and " + COLUMN[i] + "=" + "'" + VALUE[i] + "'";
+			}
+			
+			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT a." + COLUMN[0] + " FROM " + TABLE + " a where " + combined);
+			if(rs.next()) 
+				return rs.getString(COLUMN[0]);
+			else
+				return null;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { if (stmt != null) stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { if (conn != null) conn.close(); } catch (SQLException e) { e.printStackTrace(); }
+		}
+		return null;
+	}
+		
+	
+	//return the number rows in a table as integer
+	/*
 	public int get_row_count(String TABLE)
 	{
 		try
@@ -117,4 +155,5 @@ public class driver
 		}
 		return 0;
 	}
+	*/
 }
