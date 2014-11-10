@@ -1,0 +1,3 @@
+//for creating table for desktop login page
+create table user (lastName varchar(30), firstName varchar(30), password varchar(30));
+insert into user values('Dieterich', 'Larry', 'test');
