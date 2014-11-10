@@ -27,16 +27,22 @@ public class Validation
         this.password = password;
     }
  
-    public void login() {
+    public String login() {
     	
     	String[] value_constraints = {password, username};
     	String[] column_constraints = {"password", "firstName"}; 
         //String validate_password = database.retrieve_from_table("user", password, "password");
     	String validate_password = database.retrieve_from_table("user", value_constraints, column_constraints);
         if(validate_password != null && validate_password.equals(password) == true)
+        {
         	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Welcome " + username));
+        	return "continue";
+        }
         else
+        {
         	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect Password or Username"));
+        }
+        return null;
         
     }
 }

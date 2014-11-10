@@ -5,7 +5,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
+<h:head>
+<title>2wd-Login</title>
+</h:head> 
 <body>
 
 <p:panel id="panel" header="2wd-Login">
@@ -32,7 +34,7 @@
         </h:panelGrid>
  		
  		<h:panelGrid columns="2" cellpadding="1">
-        	<p:commandButton value="Submit" update="panel" actionListener="#{validation.login}" icon="ui-icon-check" />
+        	<p:commandButton value="Submit" update="panel" action="#{validation.login}" icon="ui-icon-check" />
         	<p:messages id="msgs" />
         </h:panelGrid>
     </p:panel>
