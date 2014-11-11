@@ -19,14 +19,15 @@
     <h:form>
     <p:panel id="panel" header="Sign in" style="width:515px;">
 
+        
         <h:panelGrid columns="3" cellpadding="5">
             <p:outputLabel for="username" value="Username:" />
-            <p:inputText id="username" value="#{validation.username}" required="true" label="Username">
+            <p:inputText id="username" requiredMessage="Username: Value is required." value="#{validation.username}" required="true" label="Username">
             </p:inputText>
             <p:message for="username" display="icon" />
  
             <p:outputLabel for="password" value="Password:" />
-            <p:password id="password" value="#{validation.password}" label="Password" required="true">
+            <p:password id="password" requiredMessage="Password: Value is required." value="#{validation.password}" label="Password" required="true">
                 <p:ajax update="msgPassword" event="keyup" />
             </p:password>
             <p:message for="password" id="msgPassword" display="icon" />
