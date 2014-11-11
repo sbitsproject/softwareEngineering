@@ -11,9 +11,10 @@ public class ticket
 	private String description;
 	private String first;
 	private String last;
+	private String entity;
 	private String email;
 	
-   public void newTicket( ){
+	public void newTicket(){
 	  
 	   String uuid = UUID.randomUUID().toString();
 	    Id= uuid;
@@ -31,6 +32,9 @@ public class ticket
    }
    public String getLast() {
 	   return last;
+   }
+   public String getEntity() {
+	   return entity;
    }
    public String getEmail() {
 	   return email;
