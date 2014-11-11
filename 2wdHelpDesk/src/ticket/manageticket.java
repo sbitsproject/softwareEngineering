@@ -1,4 +1,4 @@
-// To view and to edit ticket based
+// To view  based on ticket Id
 
 package ticket;
 
@@ -11,28 +11,29 @@ public class manageticket
 	private String entity;
 	private String email;
 	
-	public void viewTitle() {
+	public void viewTitle(String ID) {
 		/// call database 
 		/// output title
 	}
 	
-	public void viewDescription() {
+	
+	public void viewDescription(String Id) {
 		// call database 
 		// output description
 	}
-	public void viewFirst() {
+	public void viewFirst(String Id) {
 		// call database
 		// output description
 	}
-	public void viewLast() {
+	public void viewLast(String Id ) {
 		// call database
 		// output description
 	}
-	public void  viewEntity() {
+	public void  viewEntity(String Id) {
 		// call database
 		// output description
 	}
-	public void viewEmail() {
+	public void viewEmail(String Id) {
 		// call database
 		// output description
 	}

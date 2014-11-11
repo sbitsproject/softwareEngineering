@@ -23,21 +23,39 @@ public class ticket
    public String getTitle(){
 	   return title;
    }
+   public void setTitle(String Title) {
+	   this.title = Title;
+   }
    
    public String getDescription() {
         return description;
    }
+   public void setDescription(String Sum){
+	   this.description = Sum;
+   }
    public String getFirst(){
 	   return first;
+   }
+   public void setFirst(String First) {
+	   this.first = First;
    }
    public String getLast() {
 	   return last;
    }
+   public void setLast(String Last) {
+	   this.last = Last;
+   }
    public String getEntity() {
 	   return entity;
    }
+   public void setEntity(String Entity) {
+	   this.entity = Entity;
+   }
    public String getEmail() {
 	   return email;
+   }
+   public void setEmail(String Email) {
+	   this.email = Email;
    }
    
 }
