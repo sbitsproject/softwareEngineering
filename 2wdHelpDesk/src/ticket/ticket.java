@@ -14,10 +14,11 @@ public class ticket
 	private String entity;
 	private String email;
 	
-	public void newTicket(){
+	public String newTicket(){
 	  
 	   String uuid = UUID.randomUUID().toString();
-	    Id= uuid;
+	   Id= uuid;
+	   return Id;
    }
    
    public String getTitle(){
