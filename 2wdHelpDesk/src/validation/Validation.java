@@ -30,7 +30,7 @@ public class Validation
     public String login() {
     	
     	String[] value_constraints = {password, username};
-    	String[] column_constraints = {"password", "firstName"}; 
+    	String[] column_constraints = {"password", "firstName"};
         //String validate_password = database.retrieve_from_table("user", password, "password");
     	String validate_password = database.retrieve_from_table("user", value_constraints, column_constraints);
         if(validate_password != null && validate_password.equals(password) == true)
