@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+      
+
+<h:head>
+<style type="text/css">
+body {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #3b5998;
+   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;  
+}
+h1 {
+	color: #333333;
+	font-size: 3em;
+   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;  
+	font-weight: normal;
+	margin: 0;
+}
+h2 {
+  color: #333333;
+     font-family: "lucida grande", tahoma, verdana, arial, sans-serif; 
+  font-weight: normal;
+  margin: 0; 
+}
+p {
+	   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;  
+	color: #999999;
+	line-height: 150%;
+	margin-top: 10px;
+    margin-left: 60px;
+}
+.className td {
+    text-align: right;
+}
+</style>
+</h:head>
+<body>
+<h:form>
+                 
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+ 
+    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+        <p:tab id="personal" title="Ticket">
+            <p:panel header="Ticket Discription">
+                <p:messages />
+                   <p:messages autoUpdate="true" />
+ 
+         <h:panelGrid columns="2" styleClass="className">
+        <p:outputLabel for="console" value="Type: " />
+        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="Software" itemValue="Software" />
+            <f:selectItem itemLabel="Hardware" itemValue="Hardware" />
+         </p:selectOneMenu>
+          </h:panelGrid>
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Ticket Title: " />
+                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
+                    
+                    <h:outputText value="Description: " />
+                    <p:inputTextarea rows="10" cols="50"   value="#{userWizard.user.lastname}" required="true" label="Description"/>
+                    
+                    <h:outputText value="Comments: " />
+                    <p:inputText value="#{userWizard.user.age}"  required="true" label="Comments"/>
+                    
+                    <h:outputText value="Assigned to: " />
+                    <p:inputText value="#{userWizard.user.age}"  required="true" label="Asssign"/>
+                    
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="CompanyID" title="Company Info">
+            <p:panel header="Company Details">
+                <p:messages />
+                  <h:outputText value="Company Name: " />
+                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Street: " />
+                    <p:inputText value="#{userWizard.user.street}" />
+                    <h:outputText value="State: " />
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    
+                    <h:outputText value="Postal Code: " />
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+                     
+            
+                    <h:outputText value="City: " />
+                    <p:inputText value="#{userWizard.user.city}" />
+                     
+                     <h:outputText value="Email: " />
+                       <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                   
+                    <h:outputText value="Phone: " />
+                       <p:inputText value="#{userWizard.user.phone}"/>
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="contact" title="Device">
+            <p:panel header="Device Info">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Email: *" />
+                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+ 
+                    <h:outputText value="Phone: " />
+                    <p:inputText value="#{userWizard.user.phone}"/>
+ 
+                    <h:outputText value="Additional Info: " />
+                    <p:inputText value="#{userWizard.user.info}"/>
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+         <p:tab id="contact" title="Software">
+            <p:panel header="Software Tools">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Email: *" />
+                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+ 
+                    <h:outputText value="Phone: " />
+                    <p:inputText value="#{userWizard.user.phone}"/>
+ 
+                    <h:outputText value="Additional Info: " />
+                    <p:inputText value="#{userWizard.user.info}"/>
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="confirm" title="Review ">
+            <p:panel header="Review Info">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Firstname: " />
+                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Lastname: " />
+                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Age: " />
+                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Street: " />
+                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Postal: " />
+                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="City: " />
+                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Email: " />
+                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Phone " />
+                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Info: " />
+                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+ 
+                        <h:outputText />
+                        <h:outputText />
+                    </h:panelGrid>
+                </h:panelGrid>
+ 
+                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+ 
+</h:form>
+</body> 
+</html>
