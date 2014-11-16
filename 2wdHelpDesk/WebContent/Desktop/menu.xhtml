@@ -5,17 +5,36 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
       
-      <h:head>
-<title>2wd-Menu</title>
+<h:head>
+	<title>2wd-Menu</title>
+
 </h:head>
-	<body>
-<p:layout fullPage="true">
+
+<!-- 	<f:event listener="#{welcomeMessage.message}" type="preRenderView" /> -->
+
+<h:body onmouseover="PF('bar').hide()">
+
+<!-- Notification bar -->
+<!--  p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/> -->
+<!-- <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/> -->
+
+<p:notificationBar  position="top" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
+    <h:outputText value="PrimeFaces Rocks!" style="font-size:36px;" />
+    <p:commandButton value="Hide" onclick="PF('bar').hide()" style="align:'right'"  type="button" icon="ui-icon-arrow-1-n"/>
+</p:notificationBar>
+
+<!-- Menu layout -->
+<p:layout fullPage="true" >
  
-    <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
-        <h:outputText value="North unit content." />
+    <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
+        <h:graphicImage value="/images/banner.jpg" />
+       <h:form>
+       
+     <!--    <p:commandButton value="Submit" type="buttom" action="#{welcomeMessage.message()}" /> -->
+    	</h:form>
     </p:layoutUnit>
  
-    <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+    <p:layoutUnit  position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
         <h:outputText value="South unit content." />
     </p:layoutUnit>
  
@@ -40,10 +59,40 @@
     </p:layoutUnit>
  
     <p:layoutUnit position="center">
-        //page code
+        <div style="height:500px">
+    		<h:form>
+        		<p:growl id="msgs" showDetail="true" />
+ 
+        		<p:dashboard id="board" model="#{menuDashboard.model}">
+            	<p:ajax event="reorder" listener="#{menuDashboard.handleReorder}" update="msgs" />
+ 
+            		<p:panel id="sports" header="Sports">
+                		<h:outputText value="Sports Content" />
+           			 </p:panel>
+ 
+           			 <p:panel id="finance" header="Finance">
+              		 	<h:outputText value="Finance Content" />
+           			 </p:panel>
+ 
+           			 <p:panel id="lifestyle" header="Lifestyle">
+                		<h:outputText value="Lifestyle Content"  />
+        		    </p:panel>
+ 
+		            <p:panel id="weather" header="Weather">
+                		<h:outputText value="Weather Content" />
+        		    </p:panel>
+ 
+ 		           <p:panel id="politics" header="Politics">
+            		    <h:outputText value="Politics Content" />
+    		        </p:panel>
+        		</p:dashboard>
+ 
+        		<div style="clear:both" />
+    		</h:form>
+		</div>
     </p:layoutUnit>
  
 </p:layout>
 	
-</body>
+</h:body>
 </html>
