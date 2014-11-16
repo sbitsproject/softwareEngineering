@@ -10,14 +10,28 @@ public class MenuWidgets
 	//////////////////////////////////////////
 	public String getRaisedTickets()
 	{
-		String temp = "Tickets Raised By You No. of Raised: 12\nNo. of Solved: 8\n";
+		String temp = "12";
+		return temp;
+	}
+	public String getSolvedTickets()
+	{
+		String temp = "8";
 		return temp;
 	}
 	
 	public String getAssignedTickets()
 	{
-		String temp = "Tickets Assigned To You\nNo. of Resolved Tickets: 12\nNo. of Open Tickets:\n    ";
-		temp = temp + "High: 3\n    Medium: 6\n    Low: 15\n";
+		String temp = "8";
+		return temp;
+	}
+	public String getResolvedTickets()
+	{
+		String temp = "14";
+		return temp;
+	}
+	public String getOpenTickets()
+	{
+		String temp = "18";
 		return temp;
 	}
 	

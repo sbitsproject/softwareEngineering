@@ -32,7 +32,6 @@ public class MenuDashboard implements Serializable {
         column1.addWidget("assigned");
          
         column2.addWidget("links");
-        column2.addWidget("asdf");
 
  
         model.addColumn(column1);
