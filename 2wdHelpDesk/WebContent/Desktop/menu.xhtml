@@ -19,7 +19,7 @@
 <!-- <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/> -->
 
 <p:notificationBar  position="top" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
-    <h:outputText value="PrimeFaces Rocks!" style="font-size:36px;" />
+    <h:outputText value="Welcome #{validation.username}!" style="font-size:36px;" />
     <p:commandButton value="Hide" onclick="PF('bar').hide()" style="align:'right'"  type="button" icon="ui-icon-arrow-1-n"/>
 </p:notificationBar>
 
@@ -66,25 +66,18 @@
         		<p:dashboard id="board" model="#{menuDashboard.model}">
             	<p:ajax event="reorder" listener="#{menuDashboard.handleReorder}" update="msgs" />
  
-            		<p:panel id="sports" header="Sports">
-                		<h:outputText value="Sports Content" />
+            		<p:panel id="raised" header="Tickets Raised By You">
+                		<h:outputText value="#{menuWidgets.raisedTickets}" />
            			 </p:panel>
  
-           			 <p:panel id="finance" header="Finance">
-              		 	<h:outputText value="Finance Content" />
+           			 <p:panel id="assigned" header="Tickets Assign To You">
+              		 	<h:outputText value="#{menuWidgets.assignedTickets}" />
            			 </p:panel>
  
-           			 <p:panel id="lifestyle" header="Lifestyle">
-                		<h:outputText value="Lifestyle Content"  />
+           			 <p:panel id="links" header="Quick Links">
+                		<h:outputText value="#{menuWidgets.quickLinks}"  />
         		    </p:panel>
- 
-		            <p:panel id="weather" header="Weather">
-                		<h:outputText value="Weather Content" />
-        		    </p:panel>
- 
- 		           <p:panel id="politics" header="Politics">
-            		    <h:outputText value="Politics Content" />
-    		        </p:panel>
+        		    
         		</p:dashboard>
  
         		<div style="clear:both" />
