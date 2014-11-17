@@ -1,3 +1,53 @@
 //for creating table for desktop login page
 create table user (lastName varchar(30), firstName varchar(30), password varchar(30));
 insert into user values('Dieterich', 'Larry', 'test');
+
+create table tickets (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+company VARCHAR (35),
+title VARCHAR (100),
+priority VARCHAR (30),
+description VARCHAR (2000),
+ticketCreated DATETIME,
+ticketEnded DATETIME,
+deviceIds VARCHAR(100),
+softwareIds VARCHAR(100))
+;
+
+
+create table Devices (
+ID int (100),
+devicetype VARCHAR (35),
+manufacture VARCHAR (35),
+model VARCHAR (35),
+serialNumber VARCHAR (35),
+purchaseDate VARCHAR (10),
+warranty VARCHAR (30)
+);
+
+create table SOFTWARES (
+ID int,
+manufacture VARCHAR (35),
+version VARCHAR (35),
+serialNumber VARCHAR (35),
+purchaseDate VARCHAR (10),
+warranty VARCHAR (30)
+);
+
+create table company (
+id  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name varchar(200),
+addressLine1 varchar(200),
+addressLine2 varchar(200),
+city varchar(100),
+stateName varchar(80),
+zipcode varchar(50),
+emailID varchar(200),
+phoneNumber varchar(90)
+);
+
+ALTER TABLE SOFTWARES MODIFY ID INTEGER PRIMARY KEY;
+ALTER TABLE SOFTWARES MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;
+ ALTER TABLE DEVICES MODIFY ID INTEGER PRIMARY KEY;
+ ALTER TABLE DEVICES MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;
+ 
+ 

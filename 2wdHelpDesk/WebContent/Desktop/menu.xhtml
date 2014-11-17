@@ -59,7 +59,7 @@
     </p:layoutUnit>
  
     <p:layoutUnit position="center">
-        <div style="height:500px">
+        <div >
     		<h:form>
         		<p:growl id="msgs" showDetail="true" />
  
@@ -67,11 +67,15 @@
             	<p:ajax event="reorder" listener="#{menuDashboard.handleReorder}" update="msgs" />
  
             		<p:panel id="raised" header="Tickets Raised By You">
-                		<h:outputText value="#{menuWidgets.raisedTickets}" />
+                		<h:outputText value="No. of Raised: #{menuWidgets.raisedTickets}" /> 
+                		<br></br>
+                		<h:outputText value="No. of Solved: #{menuWidgets.solvedTickets}" /> 
            			 </p:panel>
  
            			 <p:panel id="assigned" header="Tickets Assign To You">
-              		 	<h:outputText value="#{menuWidgets.assignedTickets}" />
+              		 	<h:outputText value="No. of Tickets Resolved by you #{menuWidgets.resolvedTickets}" />
+              		 	<br></br>
+                		<h:outputText value="No. of Open Tickets: #{menuWidgets.openTickets}" /> 
            			 </p:panel>
  
            			 <p:panel id="links" header="Quick Links">

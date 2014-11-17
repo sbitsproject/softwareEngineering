@@ -4,11 +4,15 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"> 
+      <h:head>
+	<title>2wd-display</title>
 
+</h:head>
+<h:body>
 
 <h:form>
     <p:dataTable var="car" value="#{dtFilterView.cars}" widgetVar="carsTable"
-                 emptyMessage="No cars found with given criteria" filteredValue="#{dtFilterView.filteredCars}">
+                >
  
         <f:facet name="header">
             <p:outputPanel>
@@ -68,4 +72,5 @@
         </p:column>
     </p:dataTable>
 </h:form>
+</h:body>
 </html>
