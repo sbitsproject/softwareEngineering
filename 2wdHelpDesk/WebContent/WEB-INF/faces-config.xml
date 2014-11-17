@@ -9,8 +9,17 @@
 <navigation-rule>
    <from-view-id>/Desktop/Login.xhtml</from-view-id>
    <navigation-case>
-      <from-outcome>continue</from-outcome>
+      <from-outcome>login</from-outcome>
       <to-view-id>/Desktop/menu.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+   <from-view-id>/Desktop/menu.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>signout</from-outcome>
+      <to-view-id>/Desktop/Login.xhtml</to-view-id>
       <redirect />
    </navigation-case>
 </navigation-rule>
