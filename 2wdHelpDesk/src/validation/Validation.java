@@ -37,12 +37,12 @@ public class Validation
     	String validate_password = database.retrieve_from_table("user", value_constraints, column_constraints);
         if(validate_password != null && validate_password.equals(password) == true)
         {
-        	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Welcome " + username));
-        	return "continue";
+        	//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Welcome " + username));
+        	return "login";
         }
         else
         {
-        	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect Password or Username"));
+        	//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect Password or Username"));
         }
         return null;
         

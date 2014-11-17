@@ -7,17 +7,16 @@
       
 <h:head>
 	<title>2wd-Menu</title>
-
+	<style type="text/css">
+    	.noBorder tr, .noBorder td {
+    		border-style: none !important;
+		}
+	</style>
 </h:head>
-
-<!-- 	<f:event listener="#{welcomeMessage.message}" type="preRenderView" /> -->
 
 <h:body onmouseover="PF('bar').hide()">
 
-<!-- Notification bar -->
-<!--  p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/> -->
-<!-- <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/> -->
-
+<!-- Notification Bar -->
 <p:notificationBar  position="top" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
     <h:outputText value="Welcome #{validation.username}!" style="font-size:36px;" />
     <p:commandButton value="Hide" onclick="PF('bar').hide()" style="align:'right'"  type="button" icon="ui-icon-arrow-1-n"/>
@@ -27,11 +26,23 @@
 <p:layout fullPage="true" >
  
     <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
-        <h:graphicImage value="/images/banner.jpg" />
-       <h:form>
-       
-     <!--    <p:commandButton value="Submit" type="buttom" action="#{welcomeMessage.message()}" /> -->
-    	</h:form>
+    	           	
+    	<p:panelGrid columns="2" layout="grid" styleClass="noBorder">
+        	<h:graphicImage value="/images/banner.jpg" />
+			
+			<h:panelGroup style="display:block; text-align:right">
+				<h:form>
+        			<p:commandLink id="account" action="#{userAccount.gotoMyAccount}" ajax="false">
+        				<h:outputText value="My Account, #{validation.username}. " />
+    			    </p:commandLink>
+    			
+    				<p:commandLink id="signout" action="#{userAccount.signOut}" ajax="false">
+        				<h:outputText value="Sign Out" />
+    				</p:commandLink>
+    			</h:form>
+    		</h:panelGroup>
+        </p:panelGrid>
+    	
     </p:layoutUnit>
  
     <p:layoutUnit  position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
@@ -59,14 +70,16 @@
     </p:layoutUnit>
  
     <p:layoutUnit position="center">
+
         <div >
     		<h:form>
         		<p:growl id="msgs" showDetail="true" />
  
+ 				
         		<p:dashboard id="board" model="#{menuDashboard.model}">
             	<p:ajax event="reorder" listener="#{menuDashboard.handleReorder}" update="msgs" />
  
-            		<p:panel id="raised" header="Tickets Raised By You">
+            		<p:panel id="raised" header="Tickets Raised By You:">
                 		<h:outputText value="No. of Raised: #{menuWidgets.raisedTickets}" /> 
                 		<br></br>
                 		<h:outputText value="No. of Solved: #{menuWidgets.solvedTickets}" /> 
@@ -77,16 +90,16 @@
               		 	<br></br>
                 		<h:outputText value="No. of Open Tickets: #{menuWidgets.openTickets}" /> 
            			 </p:panel>
- 
+ 					 
            			 <p:panel id="links" header="Quick Links">
                 		<h:outputText value="#{menuWidgets.quickLinks}"  />
         		    </p:panel>
         		    
         		</p:dashboard>
- 
         		<div style="clear:both" />
     		</h:form>
 		</div>
+
     </p:layoutUnit>
  
 </p:layout>
