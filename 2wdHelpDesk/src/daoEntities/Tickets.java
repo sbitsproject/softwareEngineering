@@ -2,7 +2,7 @@ package daoEntities;
 
 import java.sql.Timestamp;
 
-public class Tickets {
+public class Tickets  {
 
 	 private String id;
 	 private String company;

@@ -37,8 +37,9 @@ p {
     margin-left: 60px;
 }
 </style>
+<h:graphicImage  value="/images/logo.png" /> 
 </h:head>
-<body>  
+<body>   
 <h:form>
                  
     <p:growl id="growl" sticky="true" showDetail="true"/>
@@ -48,12 +49,15 @@ p {
             <p:panel header="Ticket Details">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    
+                
+           <h:outputText value="All fields are required." /> 
+            <h:outputText value="Please be as descriptive as possible." /> 
+            
                     <p:outputLabel for="console" value="Type:" />
         <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
             <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem itemLabel="Software" itemValue="Xbox One" />
-            <f:selectItem itemLabel="Hardware" itemValue="PS4" />
+            <f:selectItem itemLabel="Software" itemValue="software" />
+            <f:selectItem itemLabel="Hardware" itemValue="hardware" />
          
         </p:selectOneMenu>
                    
