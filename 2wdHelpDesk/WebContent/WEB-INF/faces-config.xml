@@ -32,5 +32,69 @@
       <to-view-id>/mobile/displayTickets.xhtml</to-view-id>
       <redirect />
    </navigation-case>
+   <navigation-case>
+      <from-outcome>step1</from-outcome>
+      <to-view-id>/mobile/createTicketStep1.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
 </navigation-rule>
+
+<navigation-rule>
+   <from-view-id>/mobile/createTicketStep1.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>step2</from-outcome>
+      <to-view-id>/mobile/createTicketStep2.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+   
+</navigation-rule>
+
+<navigation-rule>
+   <from-view-id>/mobile/createTicketStep2.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>step3</from-outcome>
+      <to-view-id>/mobile/createTicketStep3.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+     <navigation-case>
+      <from-outcome>step1</from-outcome>
+      <to-view-id>/mobile/createTicketStep1.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+   <from-view-id>/mobile/createTicketStep3.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>step4</from-outcome>
+      <to-view-id>/mobile/createTicketStep4.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+   <navigation-case>
+      <from-outcome>step2</from-outcome>
+      <to-view-id>/mobile/createTicketStep2.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+   <from-view-id>/mobile/createTicketStep4.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>signout</from-outcome>
+      <to-view-id>/Desktop/Login.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+    <navigation-case>
+      <from-outcome>step3</from-outcome>
+      <to-view-id>/mobile/createTicketStep3.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+</navigation-rule>
+
+
+
+
+
+
+
 </faces-config>

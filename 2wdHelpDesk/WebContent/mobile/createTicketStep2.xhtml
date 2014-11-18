@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE">
+	<h:head></h:head>
+	<body>
+
+		<pm:header title="2wd-HelpDesk">
+			<p:commandButton value="Menu" type="button" icon="ui-icon-home"
+				id="home" styleClass="ui-btn-inline" />
+
+		</pm:header>
+
+		<pm:content>
+
+			<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
+				showEffect="overlay">
+				<h2>Menu</h2>
+				<p:menu>
+					<p:submenu label="Ticket">
+						<p:menuitem value="Create" url="#" />
+						<p:menuitem value="Manage" url="#" />
+					</p:submenu>
+					<p:submenu label="Payment">
+						<p:menuitem value="Received" url="#" />
+						<p:menuitem value="Made" url="#" />
+					</p:submenu>
+				</p:menu>
+			</p:overlayPanel>
+
+
+
+			<h:form id="companyForm">
+				<pm:field>
+					<p:outputLabel for="name" value="Name:" />
+					<p:inputText id="name" value="#{company.name}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="addr1" value="Address Line1:" />
+					<p:inputText id="addr1" value="#{company.addressLine1}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="addr2" value="Address Line2:" />
+					<p:inputText id="addr2" value="#{company.addressLine2}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="city" value="City:" />
+					<p:inputText id="city" value="#{company.city}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="state" value="State:" />
+					<p:inputText id="state" value="#{company.stateName}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="zip" value="ZipCode:" />
+					<p:inputText id="zip"  value="#{company.zipcode}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="email" value="Email ID:" />
+					<p:inputText id="email" value="#{company.emailID}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="phone" value="Phone Number:" />
+					<p:inputText id="phone" value="#{company.phoneNumber}"/>
+				</pm:field>
+				<p:commandButton value="Next"  icon="ui-icon-check" 
+				action="#{createAction.goToCreateStep3()}"/>
+					<p:commandButton value="Back" icon="ui-icon-delete"
+					action="#{createAction.goToCreateStep1()}" />
+
+
+			</h:form>
+		</pm:content>
+	</body>
+</f:view>
+</html>

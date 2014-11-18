@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE">
+	<h:head></h:head>
+	<body>
+
+		<pm:header title="2wd-HelpDesk">
+			<p:commandButton value="Menu" type="button" icon="ui-icon-home"
+				id="home" styleClass="ui-btn-inline" />
+
+		</pm:header>
+
+		<pm:content>
+
+			<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
+				showEffect="overlay">
+				<h2>Menu</h2>
+				<p:menu>
+					<p:submenu label="Ticket">
+						<p:menuitem value="Create" url="#" />
+						<p:menuitem value="Manage" url="#" />
+					</p:submenu>
+					<p:submenu label="Payment">
+						<p:menuitem value="Received" url="#" />
+						<p:menuitem value="Made" url="#" />
+					</p:submenu>
+				</p:menu>
+			</p:overlayPanel>
+
+
+
+			<h:form id="ticketForm">
+				<pm:field>
+					<p:outputLabel for="type" value="Type:" />
+					<p:selectOneMenu id="type" value="#{tickets.type}">
+						<f:selectItem itemLabel="Software" itemValue="Software" />
+						<f:selectItem itemLabel="Hardware" itemValue="Hardware" />
+					</p:selectOneMenu>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="title" value="Title:" />
+					<p:inputText id="title"  value="#{tickets.title}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="description" value="Description:" />
+					<p:inputText id="description" value="#{tickets.description}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="priority" value="Priority:" />
+					<p:selectOneMenu id="priority" value="#{tickets.priority}">
+						<f:selectItem itemLabel="High" itemValue="High" />
+						<f:selectItem itemLabel="Medium" itemValue="Medium" />
+						<f:selectItem itemLabel="Low" itemValue="Low" />
+					</p:selectOneMenu>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="comments" value="Comments:" />
+					<p:inputText id="comments" value="#{tickets.comments}"/>
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="assign" value="Assign To:" />
+					<p:inputText id="assign" value="#{ticketAssignment.userid}"/>
+				</pm:field>
+				<p:commandButton value="Next" icon="ui-icon-check" 
+					action="#{createAction.goToCreateStep2()}"/>
+			
+
+			</h:form>
+		</pm:content>
+	</body>
+</f:view>
+</html>

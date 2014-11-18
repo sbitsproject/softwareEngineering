@@ -74,7 +74,11 @@ public class TicketDaoImpl {
 		//	ticket.setTicketEnded(Timestamp.valueOf(rs.getString("TicketEnded")));
 			ticket.setSoftwareIds(rs.getString("softwareIds"));
 			ticket.setTitle(rs.getString("title"));
+			ticket.setType(rs.getString("type"));
+			ticket.setComments(rs.getString("comments"));
+			
 			response.getTicketList().add(ticket);
+			
 		}
 		
 		rs = stmt.executeQuery("select * from devices");
@@ -163,7 +167,7 @@ public class TicketDaoImpl {
 		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 		PreparedStatement ps;
 		String query;
-		query = " insert into tickets(company,title,priority,description,ticketCreated,ticketEnded,deviceIds,softwareIds) values (?,?,?,?,current_timestamp,null,?,?)";
+		query = " insert into tickets(company,title,priority,description,ticketCreated,ticketEnded,deviceIds,softwareIds,type,comments) values (?,?,?,?,current_timestamp,null,?,?,?,?)";
 		ps = conn.prepareStatement(query);
 		for(Tickets ticket:request.getTicketList()){
 			ps.setString(1, ticket.getCompany());
@@ -174,6 +178,8 @@ public class TicketDaoImpl {
 			//ps.setString(5,null);
 			ps.setString(5,ticket.getDeviceIds());
 			ps.setString(6,ticket.getSoftwareIds());
+			ps.setString(7,ticket.getType());
+			ps.setString(8,ticket.getComments());
 			ps.executeUpdate();
 		}
 		query = "select LAST_INSERT_ID(ID) FROM tickets";

@@ -1,7 +1,12 @@
-package daoEntities;
+package uiBeans;
 
 import java.sql.Timestamp;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
 public class Tickets {
 
 	 private String id;

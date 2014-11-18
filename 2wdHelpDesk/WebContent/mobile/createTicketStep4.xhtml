@@ -34,19 +34,31 @@
 
 
 
-			<h:form id="jsfexample">
-				<p:panelGrid  >
-					<p:accordionPanel>
-						<p:tab title="Messages">
-							<h:outputText value="The story begins as Don Vito Corleon..." />
-						</p:tab>
-						<p:tab title="QuickLinks">
-							<p:commandButton  value="Create Ticket" action="#{createAction.goToCreateStep1()}" />
-							<p:commandButton  value="Display Ticket" action="#{mobileDisplay.loadDisplay()}" />
-						</p:tab>
-					</p:accordionPanel>
-					
-				</p:panelGrid>
+			<h:form id="softwareForm">
+				<pm:field>
+					<p:outputLabel for="manufacture" value="Manufacturer:" />
+					<p:inputText id="manufacture" value="#{softwares.manufacture}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="version" value="Model:" />
+					<p:inputText id="version" value="#{softwares.version}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="serial" value="Serial Number:" />
+					<p:inputText id="serial" value="#{softwares.serialNumber}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="purchase" value="Purchase Date:" />
+					<p:inputText id="purchase" value="#{softwares.purchaseDate}" />
+				</pm:field>
+				<pm:field>
+					<p:outputLabel for="warranty" value="Warranty:" />
+					<p:inputText id="warranty" value="#{softwares.warranty}" />
+				</pm:field>
+				<p:commandButton value="Create" icon="ui-icon-check"
+					action="#{createAction.saveAll()}" />
+				<p:commandButton value="Back" icon="ui-icon-delete"
+					action="#{createAction.goToCreateStep3()}" />
 
 			</h:form>
 		</pm:content>
