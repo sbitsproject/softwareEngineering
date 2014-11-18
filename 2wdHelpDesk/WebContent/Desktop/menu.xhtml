@@ -41,10 +41,13 @@
 			
 			<h:panelGroup style="display:block; text-align:right">
 				<h:form>
-        			<p:commandLink id="account" action="#{menuCmd.gotoMyAccount}" style="text-align:right">
+					<f:ajax render=":centerpanel" execute="@this">
+        			<h:commandLink id="account" action="#{menuCmd.changeCenterPanel}" style="text-align:right">
         				<!--  <h:outputText value="My Account, #{validation.username}. " /> -->
         				<h:outputText value="My Account, Larry. " />
-    			    </p:commandLink>
+        				<f:param name="input" value="dashboard.xhtml"/>
+    			    </h:commandLink>
+    			    </f:ajax>
     			</h:form>
     			<h:form>
     				<p:commandLink id="signout" action="#{menuCmd.signOut}" >
@@ -67,8 +70,9 @@
         	<h:form id="createticket">
         		<f:ajax render=":centerpanel" execute="@this">
         		<h:outputText value="+ " />
-                <h:commandLink id="createTicketLink" action="#{menuCmd.gotoCreateTicket}">
+                <h:commandLink id="createTicketLink" action="#{menuCmd.changeCenterPanel}" >
         			<h:outputText value="Create" />
+        			<f:param name="input" value="new.xhtml"/>
     			</h:commandLink>
     			</f:ajax>
     		</h:form>
