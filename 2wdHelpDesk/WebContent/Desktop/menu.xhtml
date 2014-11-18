@@ -47,7 +47,7 @@
     			    </p:commandLink>
     			</h:form>
     			<h:form>
-    				<p:commandLink id="signout" action="#{menuCmd.signOut}">
+    				<p:commandLink id="signout" action="#{menuCmd.signOut}" >
         				<h:outputText value="Sign Out" />
     				</p:commandLink>
     			</h:form>
@@ -66,7 +66,7 @@
         <p:tab title="Ticket">
         	<h:form>
         		<h:outputText value="+ " />
-                <p:commandLink id="createTicketLink" action="#{menuCmd.gotoMyAccount}">
+                <p:commandLink id="createTicketLink" action="#{menuCmd.gotoCreateTicket}" update=":centerpanel" ajax="false">
         			<h:outputText value="Create" />
     			</p:commandLink>
     		</h:form>
@@ -91,7 +91,7 @@
     </p:layoutUnit>
  
     <p:layoutUnit position="center" id="centerpanel">
-    	<ui:include src="#{menuCmd.centerPanel}" />
+    	<ui:include src="#{menuCmd.centerPanel}"/>
     </p:layoutUnit>
  
 </p:layout>

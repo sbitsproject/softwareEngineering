@@ -12,9 +12,9 @@ public class MenuCmd
 		return null;
 	}
 	
-	public void createTicket()
+	public void gotoCreateTicket()
 	{
-		
+		centerPanel = "new.xhtml";
 	}
 	
 	public String signOut()
