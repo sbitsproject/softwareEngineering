@@ -42,7 +42,8 @@
 			<h:panelGroup style="display:block; text-align:right">
 				<h:form>
         			<p:commandLink id="account" action="#{menuCmd.gotoMyAccount}" style="text-align:right">
-        				<h:outputText value="My Account, #{validation.username}. " />
+        				<!--  <h:outputText value="My Account, #{validation.username}. " /> -->
+        				<h:outputText value="My Account, Larry. " />
     			    </p:commandLink>
     			</h:form>
     			<h:form>
@@ -89,61 +90,8 @@
         <h:outputText value="Right unit content." />
     </p:layoutUnit>
  
-    <p:layoutUnit position="center">
-    	<p:panel style="padding: 5% 0; position:relative;" styleClass="centered">
-		
-		<p:panelGrid columns="1"  styleClass="centered noBorder" >
-		
-		
-    		<h:form>
-        		<p:growl id="msgs" showDetail="true" />
- 
- 				
- 				
-        		<p:dashboard id="board" model="#{menuDashboard.model}">
-            	<p:ajax event="reorder" listener="#{menuDashboard.handleReorder}" update="msgs" />
- 
-            		<p:panel id="raised" header="Tickets Raised By You:">
-                		<h:outputText value="No. of Raised: #{menuWidgets.raisedTickets}" /> 
-                		<br></br>
-                		<h:outputText value="No. of Solved: #{menuWidgets.solvedTickets}" /> 
-           			 </p:panel>
-           			 
-           			 <p:panel id="assigned" header="Tickets Assigned To You:">
-              		 	<h:outputText value="No. of Tickets Resolved by You: #{menuWidgets.resolvedTickets}" />
-              		 	<br></br>
-                		<h:outputText value="No. of Open Tickets: #{menuWidgets.openTickets}" /> 
-           			 </p:panel>
- 					 
-           			 <p:panel id="links" header="Quick Links">
-           			 	<h:form>
-        					<p:commandLink id="createTicketLink" action="#{menuCmd.gotoMyAccount}">
-        						<h:outputText value="Create Ticket" />
-    			   			</p:commandLink>
-    					</h:form>
-    					
-    					<h:form>
-    						<p:commandLink id="manageTicketLink" action="#{menuCmd.gotoMyAccount}">
-        						<h:outputText value="Manage Tickets" />
-    						</p:commandLink>
-    					</h:form>
-    					
-    					<h:form>
-    						<p:commandLink id="seePaymentsLink" action="#{menuCmd.gotoMyAccount}">
-        						<h:outputText value="See Payments" />
-    						</p:commandLink>
-    					</h:form>
-    					
-        		    </p:panel>
-        		    
-        		</p:dashboard>
-        		
-        		<!-- <div style="clear:both" />  -->
-    		</h:form>
-		
-		
-		</p:panelGrid>
-		</p:panel>
+    <p:layoutUnit position="center" id="centerpanel">
+    	<ui:include src="#{menuCmd.centerPanel}" />
     </p:layoutUnit>
  
 </p:layout>
