@@ -39,116 +39,132 @@ p {
 </style>
 </h:head>
 <body>  
-<h:form>              
+<h:form>
+                 
     <p:growl id="growl" sticky="true" showDetail="true"/>
-     <p:wizard flowListener="#{userWizard.onFlowProcess}">
-        <p:tab id="personal" title="Ticket">
-            <p:panel header="Ticket Discription">
-                <p:messages />
-                   <p:messages autoUpdate="true" />
  
-        <h:panelGrid columns="2" columnClasses="label, value">      
-        <p:outputLabel for="console" value="Type:       " />
-        <p:selectOneMenu id="console" value="#{GetTicketDetailsResponse.getPriority}">
-            <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem itemLabel="Software" itemValue="Software" />
-            <f:selectItem itemLabel="Hardware" itemValue="Hardware" />
-            
-         </p:selectOneMenu>
-          </h:panelGrid>
+    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+        <p:tab id="ticket" title="Ticket">
+            <p:panel header="Ticket Details">
+                <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Ticket Title: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getTitle}" required="true" label="Title"/>
                     
-                    <h:outputText value="Description: " />
-                    <p:inputTextarea rows="10" cols="50"   value="#{GetTicketDetailsResponse.getDescription}" required="true" label="Description"/>
-                    
-                    <h:outputText value="Assigned to: " />
-                    <p:inputText value="#{userWizard.user.age}"  required="true" label="Asssign"/>
-                    
+                    <p:outputLabel for="console" value="Type:" />
+        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItem itemLabel="Software" itemValue="Xbox One" />
+            <f:selectItem itemLabel="Hardware" itemValue="PS4" />
+         
+        </p:selectOneMenu>
+                   
+                    <h:outputText value="Title: " />
+                    <p:inputText value="#{TicketDaoImpl.retrieveAllDetails}" required="true" label="Firstname"/>
+ 
+ 
+                      <h:outputText value="Description:" />
+                       <p:inputTextarea rows="10" cols="50" value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
+ 
+                    <h:outputText value="Assign to:" />
+                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
+ 
+                   
+ 
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
                 </h:panelGrid>
             </p:panel>
         </p:tab>
  
-        <p:tab id="CompanyID" title="Company Info">
+        <p:tab id="company" title="Company">
             <p:panel header="Company Details">
                 <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                 
+                  <h:outputText value="Name: " />
+                    <p:inputText value="#{userWizard.user.street}" />
                   
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Name: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getName}" required="true" label="Company Name"/>
-                   
                     <h:outputText value="Street: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getAddressLine1}" />
-                    
-                    <h:outputText value="State: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getStateName}" />
-                    
+                    <p:inputText value="#{userWizard.user.street}" />
+ 
                     <h:outputText value="Postal Code: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getZipcode}" />
-                     
-            
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+ 
                     <h:outputText value="City: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getCity}" />
-                     
-                     <h:outputText value="Email: " />
-                       <p:inputText value="#{GetTicketDetailsResponse.getEmailID}" required="true" label="Email"/>
+                    <p:inputText value="#{userWizard.user.city}" />
+ 
+                    <h:outputText value="Email: " />
+                    <p:inputText value="#{userWizard.user.street}" />
+                    
+                    
+                    <h:outputText value="Phone Number: " />
+                    <p:inputText value="#{userWizard.user.street}" />
                    
-                    <h:outputText value="Phone: " />
-                       <p:inputText value="#{GetTicketDetailsResponse.getPhoneNumber}"/>
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
                 </h:panelGrid>
             </p:panel>
         </p:tab>
  
-        <p:tab id="contact" title="Device">
-            <p:panel header="Device Info">
+        <p:tab id="devices" title="Devices">
+            <p:panel header="Device Information">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Typel: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getDevicetype}" required="true" label="Email"/>
+                   
+                    <h:outputText value="Id: " />
+                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
  
+                     <h:outputText value="Device type: " />
+                    <p:inputText value="#{userWizard.user.street}" />
+                    
                     <h:outputText value="Manufacture: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getManufacture}"/>
+                    <p:inputText value="#{userWizard.user.phone}"/>
  
                     <h:outputText value="Model: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getModel}"/>
-                
-                     <h:outputText value="Serial: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getSerialNumber}"/>
+                    <p:inputText value="#{userWizard.user.info}"/>
                     
-                     <h:outputText value="Purchase Date: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getPurchaseDate}"/>
+                    <h:outputText value="Serial Number: " />
+                    <p:inputText value="#{userWizard.user.info}"/>
+                    
+                    <h:outputText value="Purchase Date: " />
+                    <p:inputText value="#{userWizard.user.info}"/>
                     
                     <h:outputText value="Warranty: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getWarranty}"/>
-                
+                    <p:inputText value="#{userWizard.user.info}"/>
                 </h:panelGrid>
             </p:panel>
         </p:tab>
-         <p:tab id="contact" title="Software">
-            <p:panel header="Software Tools">
+         
+          <p:tab id="software" title="Software">
+            <p:panel header="Software Details">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
+                  
+                  <h:outputText value="Id: " />
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+                  
                     <h:outputText value="Manufacture: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.Softwares.getManufacture}" required="true" label="Email"/>
+                    <p:inputText value="#{userWizard.user.postalCode}" />
  
                     <h:outputText value="Version: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getVersion}"/>
+                    <p:inputText value="#{userWizard.user.postalCode}" />
  
                     <h:outputText value="Serial Number: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getSerialNumber}"/>
-                    
-                    <h:outputText value="Purchase Dtae: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getPurchaseDate}"/>
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+ 
+                    <h:outputText value="Purchase Date: " />
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+                
                     
                     <h:outputText value="Warranty: " />
-                    <p:inputText value="#{GetTicketDetailsResponse.getWarranty}"/>
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+                   
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
                 </h:panelGrid>
             </p:panel>
         </p:tab>
- 
-        <p:tab id="confirm" title="Review ">
-            <p:panel header="Review Info">
+           <p:tab id="confirm" title="Confirmation">
+            <p:panel header="Confirmation">
                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <h:outputText value="Firstname: " />
@@ -187,10 +203,11 @@ p {
                     </h:panelGrid>
                 </h:panelGrid>
  
-               <p:commandButton value="Submit" actionListener="#{SaveTicketDetailsResponse.isSave}" update="growl" process="@this"/>
+                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
             </p:panel>
         </p:tab>
-  </p:wizard>
+    </p:wizard>
+ 
 </h:form>
-</body> 
-</html>
+  </body>
+  </html>         
