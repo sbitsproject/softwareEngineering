@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE">
+	<h:head></h:head>
+	<body>
+
+		<pm:header title="2wd-HelpDesk">
+			<p:commandButton value="Menu" type="button" icon="ui-icon-home"
+				id="home" styleClass="ui-btn-inline" />
+
+		</pm:header>
+
+		<pm:content>
+
+			<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
+				showEffect="overlay">
+				<h2>Menu</h2>
+				<p:menu>
+					<p:submenu label="Ticket">
+						<p:menuitem value="Create" url="#" />
+						<p:menuitem value="Manage" url="#" />
+					</p:submenu>
+					<p:submenu label="Payment">
+						<p:menuitem value="Received" url="#" />
+						<p:menuitem value="Made" url="#" />
+					</p:submenu>
+				</p:menu>
+			</p:overlayPanel>
+
+
+
+			<h:form id="jsfexample">
+				<p:panelGrid  >
+					<p:accordionPanel>
+						<p:tab title="Messages">
+							<h:outputText value="The story begins as Don Vito Corleon..." />
+						</p:tab>
+						<p:tab title="QuickLinks">
+							<p:commandButton  value="Create Ticket" action="#{mobileDisplay.loadDisplay()}" />
+						</p:tab>
+					</p:accordionPanel>
+					
+				</p:panelGrid>
+
+			</h:form>
+		</pm:content>
+	</body>
+</f:view>
+</html>

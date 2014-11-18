@@ -24,4 +24,13 @@
    </navigation-case>
 </navigation-rule>
 
+
+<navigation-rule>
+   <from-view-id>/mobile/mobileMenu.xhtml</from-view-id>
+   <navigation-case>
+      <from-outcome>continue</from-outcome>
+      <to-view-id>/mobile/displayTickets.xhtml</to-view-id>
+      <redirect />
+   </navigation-case>
+</navigation-rule>
 </faces-config>

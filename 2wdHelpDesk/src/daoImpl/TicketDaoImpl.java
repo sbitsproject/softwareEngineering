@@ -282,7 +282,7 @@ public class TicketDaoImpl {
 	
 	public static void main(String[] args){
 		
-		/*SaveTicketDetailsRequest request = new SaveTicketDetailsRequest();
+		SaveTicketDetailsRequest request = new SaveTicketDetailsRequest();
 		Tickets ticket = new Tickets();
 		ticket.setCompany( "1");
 		ticket.setDescription( "description");
@@ -327,23 +327,23 @@ public class TicketDaoImpl {
 		TicketAssignment assign = new TicketAssignment();
 		assign.setTicketid( "ticketid");
 		assign.setUserid( "1");
-		request.getAssinmentList().add(assign);*/
+		request.getAssinmentList().add(assign);
 		
 		TicketDaoImpl impl = new TicketDaoImpl();
-		/*try {
+		try {
 			impl.saveDetails(request);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		
-		try {
+		/*try {
 			impl.retrieveAllDetails(new GetTicketDetailsRequest());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 	

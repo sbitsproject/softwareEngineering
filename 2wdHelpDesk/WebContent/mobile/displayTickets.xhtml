@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE">
+	<h:head>
+	
+	<title>2wd-Mobile Tickets</title>
+	</h:head>
+	<h:body>
+		<pm:page>
+		<pm:header title="2wd-HelpDesk" >
+			<p:commandButton value="Menu" type="button" icon="ui-icon-home"
+				id="home" styleClass="ui-btn-inline" />
+
+		</pm:header>
+		
+		<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
+				showEffect="overlay">
+				<h2>Menu</h2>
+				<p:menu>
+					<p:submenu label="Ticket">
+						<p:menuitem value="Create" url="#" />
+						<p:menuitem value="Manage" url="#" />
+					</p:submenu>
+					<p:submenu label="Payment">
+						<p:menuitem value="Received" url="#" />
+						<p:menuitem value="Made" url="#" />
+					</p:submenu>
+				</p:menu>
+			</p:overlayPanel>
+			<pm:content>
+
+				<h:form id="ticketTable">
+					<p:dataTable id="Tickets" var="ticket"
+						value="#{mobileDisplay.displayList}"  
+						 tableStyle="table-layout:auto;width:100%;"
+						  scrollable="true"  
+						tableStyleClass="uui-table-reflow"
+						style=" border: 2px #bed6f8;">
+
+						<p:column sortBy="#{ticket.ticketId}" priority="1" style="border: 10px; !important;">
+							<f:facet name="header">  
+           					         ID  
+          					  </f:facet>
+							<h:outputText value="#{ticket.ticketId}" />
+						</p:column>
+
+						<p:column headerText="Desc"
+							sortBy="#{ticket.ticketDescription}" priority="2">
+							<h:outputText value="#{ticket.ticketDescription}" />
+						</p:column>
+
+						<p:column headerText="Assign" sortBy="#{ticket.assignedTo}"
+							priority="1">
+							<h:outputText value="#{ticket.assignedTo}" />
+						</p:column>
+
+						<p:column headerText="CreTime"
+							sortBy="#{ticket.ticketCreated}" priority="2">
+							<h:outputText value="#{ticket.ticketCreated}" />
+						</p:column>
+
+						<p:column headerText="ElaTime" sortBy="#{ticket.timeElapsed}"
+							priority="2">
+							<h:outputText value="#{ticket.timeElapsed}" />
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</pm:content>
+		</pm:page>
+	</h:body>
+</f:view>
+</html>
