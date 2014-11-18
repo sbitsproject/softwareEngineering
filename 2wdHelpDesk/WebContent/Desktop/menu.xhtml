@@ -41,10 +41,13 @@
 			
 			<h:panelGroup style="display:block; text-align:right">
 				<h:form>
-        			<p:commandLink id="account" action="#{menuCmd.gotoMyAccount}" style="text-align:right">
+					<f:ajax render=":centerpanel" execute="@this">
+        			<h:commandLink id="account" action="#{menuCmd.changeCenterPanel}" style="text-align:right">
         				<!--  <h:outputText value="My Account, #{validation.username}. " /> -->
         				<h:outputText value="My Account, Larry. " />
-    			    </p:commandLink>
+        				<f:param name="input" value="dashboard.xhtml"/>
+    			    </h:commandLink>
+    			    </f:ajax>
     			</h:form>
     			<h:form>
     				<p:commandLink id="signout" action="#{menuCmd.signOut}" >
@@ -64,11 +67,14 @@
     <p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="true">
         <p:accordionPanel>
         <p:tab title="Ticket">
-        	<h:form>
+        	<h:form id="createticket">
+        		<f:ajax render=":centerpanel" execute="@this">
         		<h:outputText value="+ " />
-                <p:commandLink id="createTicketLink" action="#{menuCmd.gotoCreateTicket}" update=":centerpanel" ajax="false">
+                <h:commandLink id="createTicketLink" action="#{menuCmd.changeCenterPanel}" >
         			<h:outputText value="Create" />
-    			</p:commandLink>
+        			<f:param name="input" value="new.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
     		</h:form>
     		
     		<h:form>
@@ -78,10 +84,21 @@
     			</p:commandLink>
     		</h:form>
         </p:tab>
-        <p:tab title="Godfather Part II">
-            <h:panelGrid columns="2" cellpadding="10"> 
-                <h:outputText value="Francis Ford Coppola's legendary..." />
-            </h:panelGrid>
+        <p:tab title="Support">
+            <h:form>
+    			<h:outputText value="+ " />
+    			<p:commandLink id="createSupportEvent" action="#{menuCmd.gotoMyAccount}">
+        			<h:outputText value="Create" />
+    			</p:commandLink>
+    		</h:form>
+    		
+    		<h:form>
+    			<h:outputText value="+ " />
+    			<p:commandLink id="manageSupportEvent" action="#{menuCmd.gotoMyAccount}">
+        			<h:outputText value="Manage" />
+    			</p:commandLink>
+    		</h:form>
+            
         </p:tab>
         </p:accordionPanel>
     </p:layoutUnit>
@@ -90,8 +107,10 @@
         <h:outputText value="Right unit content." />
     </p:layoutUnit>
  
-    <p:layoutUnit position="center" id="centerpanel">
-    	<ui:include src="#{menuCmd.centerPanel}"/>
+    <p:layoutUnit position="center">
+    	<h:panelGroup id="centerpanel">
+    		<ui:include src="#{menuCmd.centerPanel}"/>
+    	</h:panelGroup>
     </p:layoutUnit>
  
 </p:layout>

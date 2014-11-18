@@ -1,6 +1,7 @@
 package menudesktop;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 public class MenuCmd 
@@ -15,6 +16,12 @@ public class MenuCmd
 	public void gotoCreateTicket()
 	{
 		centerPanel = "new.xhtml";
+	}
+	
+	public void changeCenterPanel()
+	{
+		String str = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("input");
+		centerPanel = str;
 	}
 	
 	public String signOut()
