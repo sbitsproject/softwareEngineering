@@ -36,39 +36,32 @@ p {
 	margin-top: 10px;
     margin-left: 60px;
 }
-.className td {
-    text-align: right;
-}
 </style>
 </h:head>
-<body>
-<h:form>
-                 
+<body>  
+<h:form>              
     <p:growl id="growl" sticky="true" showDetail="true"/>
- 
-    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+     <p:wizard flowListener="#{userWizard.onFlowProcess}">
         <p:tab id="personal" title="Ticket">
             <p:panel header="Ticket Discription">
                 <p:messages />
                    <p:messages autoUpdate="true" />
  
-         <h:panelGrid columns="2" styleClass="className">
-        <p:outputLabel for="console" value="Type: " />
-        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+        <h:panelGrid columns="2" columnClasses="label, value">      
+        <p:outputLabel for="console" value="Type:       " />
+        <p:selectOneMenu id="console" value="#{GetTicketDetailsResponse.getPriority}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem itemLabel="Software" itemValue="Software" />
             <f:selectItem itemLabel="Hardware" itemValue="Hardware" />
+            
          </p:selectOneMenu>
           </h:panelGrid>
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Ticket Title: " />
-                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
+                    <p:inputText value="#{GetTicketDetailsResponse.getTitle}" required="true" label="Title"/>
                     
                     <h:outputText value="Description: " />
-                    <p:inputTextarea rows="10" cols="50"   value="#{userWizard.user.lastname}" required="true" label="Description"/>
-                    
-                    <h:outputText value="Comments: " />
-                    <p:inputText value="#{userWizard.user.age}"  required="true" label="Comments"/>
+                    <p:inputTextarea rows="10" cols="50"   value="#{GetTicketDetailsResponse.getDescription}" required="true" label="Description"/>
                     
                     <h:outputText value="Assigned to: " />
                     <p:inputText value="#{userWizard.user.age}"  required="true" label="Asssign"/>
@@ -80,26 +73,29 @@ p {
         <p:tab id="CompanyID" title="Company Info">
             <p:panel header="Company Details">
                 <p:messages />
-                  <h:outputText value="Company Name: " />
-                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname"/>
-                <h:panelGrid columns="2" columnClasses="label, value">
+                  
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Name: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getName}" required="true" label="Company Name"/>
+                   
                     <h:outputText value="Street: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{GetTicketDetailsResponse.getAddressLine1}" />
+                    
                     <h:outputText value="State: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{GetTicketDetailsResponse.getStateName}" />
                     
                     <h:outputText value="Postal Code: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{GetTicketDetailsResponse.getZipcode}" />
                      
             
                     <h:outputText value="City: " />
-                    <p:inputText value="#{userWizard.user.city}" />
+                    <p:inputText value="#{GetTicketDetailsResponse.getCity}" />
                      
                      <h:outputText value="Email: " />
-                       <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                       <p:inputText value="#{GetTicketDetailsResponse.getEmailID}" required="true" label="Email"/>
                    
                     <h:outputText value="Phone: " />
-                       <p:inputText value="#{userWizard.user.phone}"/>
+                       <p:inputText value="#{GetTicketDetailsResponse.getPhoneNumber}"/>
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -108,14 +104,24 @@ p {
             <p:panel header="Device Info">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Email: *" />
-                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                    <h:outputText value="Typel: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getDevicetype}" required="true" label="Email"/>
  
-                    <h:outputText value="Phone: " />
-                    <p:inputText value="#{userWizard.user.phone}"/>
+                    <h:outputText value="Manufacture: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getManufacture}"/>
  
-                    <h:outputText value="Additional Info: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <h:outputText value="Model: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getModel}"/>
+                
+                     <h:outputText value="Serial: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getSerialNumber}"/>
+                    
+                     <h:outputText value="Purchase Date: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getPurchaseDate}"/>
+                    
+                    <h:outputText value="Warranty: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getWarranty}"/>
+                
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -123,14 +129,20 @@ p {
             <p:panel header="Software Tools">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Email: *" />
-                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+                    <h:outputText value="Manufacture: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.Softwares.getManufacture}" required="true" label="Email"/>
  
-                    <h:outputText value="Phone: " />
-                    <p:inputText value="#{userWizard.user.phone}"/>
+                    <h:outputText value="Version: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getVersion}"/>
  
-                    <h:outputText value="Additional Info: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <h:outputText value="Serial Number: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getSerialNumber}"/>
+                    
+                    <h:outputText value="Purchase Dtae: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getPurchaseDate}"/>
+                    
+                    <h:outputText value="Warranty: " />
+                    <p:inputText value="#{GetTicketDetailsResponse.getWarranty}"/>
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -175,11 +187,10 @@ p {
                     </h:panelGrid>
                 </h:panelGrid>
  
-                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+               <p:commandButton value="Submit" actionListener="#{SaveTicketDetailsResponse.isSave}" update="growl" process="@this"/>
             </p:panel>
         </p:tab>
-    </p:wizard>
- 
+  </p:wizard>
 </h:form>
 </body> 
 </html>
