@@ -84,10 +84,21 @@
     			</p:commandLink>
     		</h:form>
         </p:tab>
-        <p:tab title="Godfather Part II">
-            <h:panelGrid columns="2" cellpadding="10"> 
-                <h:outputText value="Francis Ford Coppola's legendary..." />
-            </h:panelGrid>
+        <p:tab title="Support">
+            <h:form>
+    			<h:outputText value="+ " />
+    			<p:commandLink id="createSupportEvent" action="#{menuCmd.gotoMyAccount}">
+        			<h:outputText value="Create" />
+    			</p:commandLink>
+    		</h:form>
+    		
+    		<h:form>
+    			<h:outputText value="+ " />
+    			<p:commandLink id="manageSupportEvent" action="#{menuCmd.gotoMyAccount}">
+        			<h:outputText value="Manage" />
+    			</p:commandLink>
+    		</h:form>
+            
         </p:tab>
         </p:accordionPanel>
     </p:layoutUnit>
