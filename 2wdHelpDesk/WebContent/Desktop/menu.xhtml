@@ -40,12 +40,12 @@
 			
 			<h:panelGroup style="display:block; text-align:right">
 				<h:form>
-        			<p:commandLink id="account" action="#{userAccount.gotoMyAccount}" style="text-align:right">
+        			<p:commandLink id="account" action="#{menuCmd.gotoMyAccount}" style="text-align:right">
         				<h:outputText value="My Account, #{validation.username}. " />
     			    </p:commandLink>
     			</h:form>
     			<h:form>
-    				<p:commandLink id="signout" action="#{userAccount.signOut}">
+    				<p:commandLink id="signout" action="#{menuCmd.signOut}">
         				<h:outputText value="Sign Out" />
     				</p:commandLink>
     			</h:form>
@@ -63,13 +63,13 @@
         <p:accordionPanel>
         <p:tab title="Ticket">
         	<h:form>
-                <p:commandLink id="createTicketLink" action="#{userAccount.gotoMyAccount}">
+                <p:commandLink id="createTicketLink" action="#{menuCmd.gotoMyAccount}">
         			<h:outputText value="Create" />
     			</p:commandLink>
     		</h:form>
     		
     		<h:form>
-    			<p:commandLink id="manageTicketLink" action="#{userAccount.gotoMyAccount}">
+    			<p:commandLink id="manageTicketLink" action="#{menuCmd.gotoMyAccount}">
         			<h:outputText value="Manage" />
     			</p:commandLink>
     		</h:form>
@@ -114,19 +114,19 @@
  					 
            			 <p:panel id="links" header="Quick Links">
            			 	<h:form>
-        					<p:commandLink id="createTicketLink" action="#{userAccount.gotoMyAccount}">
+        					<p:commandLink id="createTicketLink" action="#{menuCmd.gotoMyAccount}">
         						<h:outputText value="Create Ticket" />
     			   			</p:commandLink>
     					</h:form>
     					
     					<h:form>
-    						<p:commandLink id="manageTicketLink" action="#{userAccount.gotoMyAccount}">
+    						<p:commandLink id="manageTicketLink" action="#{menuCmd.gotoMyAccount}">
         						<h:outputText value="Manage Tickets" />
     						</p:commandLink>
     					</h:form>
     					
     					<h:form>
-    						<p:commandLink id="seePaymentsLink" action="#{userAccount.gotoMyAccount}">
+    						<p:commandLink id="seePaymentsLink" action="#{menuCmd.gotoMyAccount}">
         						<h:outputText value="See Payments" />
     						</p:commandLink>
     					</h:form>
