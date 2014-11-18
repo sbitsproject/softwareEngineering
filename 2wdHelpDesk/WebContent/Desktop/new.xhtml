@@ -45,7 +45,7 @@ p {
                  
     <p:growl id="growl" sticky="true" showDetail="true"/>
  
-    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+   
         <p:tab id="ticket" title="Ticket">
             <p:panel header="Ticket Details">
                 <p:messages />
@@ -55,7 +55,7 @@ p {
             <h:outputText value="Please be as descriptive as possible." /> 
             
                     <p:outputLabel for="console" value="Type:" />
-        <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+        <p:selectOneMenu id="console" value="#{tickets.type}">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItem itemLabel="Software" itemValue="software" />
             <f:selectItem itemLabel="Hardware" itemValue="hardware" />
@@ -63,19 +63,27 @@ p {
         </p:selectOneMenu>
                    
                     <h:outputText value="Title: " />
-                    <p:inputText value="#{TicketDaoImpl.retrieveAllDetails}" required="true" label="Firstname"/>
+                    <p:inputText value="#{tickets.title}" required="true" label="Title"/>
  
  
                       <h:outputText value="Description:" />
-                       <p:inputTextarea rows="10" cols="50" value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
+                       <p:inputTextarea rows="10" cols="50" value="#{tickets.description}" required="true" label="Description"/>
+ 
+                    
+                    <h:outputText value="Additional comments:" />
+                    <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
  
                     <h:outputText value="Assign to:" />
                     <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
  
                    
- 
-                    <h:outputText value="Skip to last: " />
-                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                    <h:outputText value="Urgency:" />
+					<p:selectOneMenu id="v" value="#{tickets.priority}">
+						<f:selectItem itemLabel="High" itemValue="High" />
+						<f:selectItem itemLabel="Medium" itemValue="Medium" />
+						<f:selectItem itemLabel="Low" itemValue="Low" />
+					</p:selectOneMenu>
+			
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -86,26 +94,28 @@ p {
                 <h:panelGrid columns="2" columnClasses="label, value">
                  
                   <h:outputText value="Name: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{company.name}" />
                   
                     <h:outputText value="Street: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{company.addressLine1}" />
  
                     <h:outputText value="Postal Code: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{company.zipcode}" />
  
                     <h:outputText value="City: " />
-                    <p:inputText value="#{userWizard.user.city}" />
+                    <p:inputText value="#{company.city}" />
  
+                     <h:outputText value="State: " />
+                    <p:inputText value="#{company.stateName}" />
+                    
                     <h:outputText value="Email: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{company.emailID}" />
                     
                     
                     <h:outputText value="Phone Number: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{company.phoneNumber}" />
                    
-                    <h:outputText value="Skip to last: " />
-                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -115,26 +125,23 @@ p {
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                    
-                    <h:outputText value="Id: " />
-                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
- 
                      <h:outputText value="Device type: " />
-                    <p:inputText value="#{userWizard.user.street}" />
+                    <p:inputText value="#{devices.devicetype}" />
                     
                     <h:outputText value="Manufacture: " />
-                    <p:inputText value="#{userWizard.user.phone}"/>
+                    <p:inputText value="#{devices.manufacture}"/>
  
                     <h:outputText value="Model: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <p:inputText value="#{devices.model}"/>
                     
                     <h:outputText value="Serial Number: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <p:inputText value="#{devices.serialNumber}"/>
                     
                     <h:outputText value="Purchase Date: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <p:inputText value="#{devices.purchaseDate}"/>
                     
                     <h:outputText value="Warranty: " />
-                    <p:inputText value="#{userWizard.user.info}"/>
+                    <p:inputText value="#{devices.warranty}"/>
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -144,17 +151,14 @@ p {
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                   
-                  <h:outputText value="Id: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
-                  
                     <h:outputText value="Manufacture: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{softwares.manufacture}" />
  
                     <h:outputText value="Version: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{softwares.version}" />
  
                     <h:outputText value="Serial Number: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{softwares.serialNumber}" />
  
                     <h:outputText value="Purchase Date: " />
                     <p:inputText value="#{userWizard.user.postalCode}" />
@@ -163,55 +167,16 @@ p {
                     <h:outputText value="Warranty: " />
                     <p:inputText value="#{userWizard.user.postalCode}" />
                    
-                    <h:outputText value="Skip to last: " />
-                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                    
                 </h:panelGrid>
+      
+          <p:commandButton value="Sumbit Ticket" icon="ui-icon-check"
+					action="#{createAction.saveAll()}" />
+ 
+               
             </p:panel>
         </p:tab>
-           <p:tab id="confirm" title="Confirmation">
-            <p:panel header="Confirmation">
-                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Firstname: " />
-                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="Lastname: " />
-                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="Age: " />
-                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
-                    </h:panelGrid>
- 
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Street: " />
-                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="Postal: " />
-                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="City: " />
-                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
-                    </h:panelGrid>
- 
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Email: " />
-                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="Phone " />
-                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
- 
-                        <h:outputText value="Info: " />
-                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
- 
-                        <h:outputText />
-                        <h:outputText />
-                    </h:panelGrid>
-                </h:panelGrid>
- 
-                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
-            </p:panel>
-        </p:tab>
-    </p:wizard>
+   
  
 </h:form>
   </body>
