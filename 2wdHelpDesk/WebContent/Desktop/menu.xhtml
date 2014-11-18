@@ -64,11 +64,13 @@
     <p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="true">
         <p:accordionPanel>
         <p:tab title="Ticket">
-        	<h:form>
+        	<h:form id="createticket">
+        		<f:ajax render=":centerpanel" execute="@this">
         		<h:outputText value="+ " />
-                <p:commandLink id="createTicketLink" action="#{menuCmd.gotoCreateTicket}" update=":centerpanel" ajax="false">
+                <h:commandLink id="createTicketLink" action="#{menuCmd.gotoCreateTicket}">
         			<h:outputText value="Create" />
-    			</p:commandLink>
+    			</h:commandLink>
+    			</f:ajax>
     		</h:form>
     		
     		<h:form>
@@ -90,8 +92,10 @@
         <h:outputText value="Right unit content." />
     </p:layoutUnit>
  
-    <p:layoutUnit position="center" id="centerpanel">
-    	<ui:include src="#{menuCmd.centerPanel}"/>
+    <p:layoutUnit position="center">
+    	<h:panelGroup id="centerpanel">
+    		<ui:include src="#{menuCmd.centerPanel}"/>
+    	</h:panelGroup>
     </p:layoutUnit>
  
 </p:layout>
