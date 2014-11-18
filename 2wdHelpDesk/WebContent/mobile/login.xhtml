@@ -1,42 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pm="http://primefaces.org/mobile"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
 <f:view renderKitId="PRIMEFACES_MOBILE">
-<h:head></h:head> 
-<body>
+	<h:head></h:head>
+	<body>
 
-            <pm:header title="2wd-Login">
-                <f:facet name="left">
-                    <h:graphicImage  value="/images/login.jpg" />  
-                </f:facet>
-            </pm:header>
- 
-            <pm:content>
- 
-                <h:form id="jsfexample">
-                    <p:panelGrid columns="2">
-                        <f:facet name="header">  
-               This is a basic form component 
-           </f:facet>
-                        <h:outputLabel for="key" value="Enter key" />
-                        <p:inputText id="key" value="Manager" />
- 
-                        <h:outputLabel for="value" value="Enter value" />
-                        <p:inputText id="value" value="value" />
- 
-                        <p:commandButton  value="Save"
-                            icon="ui-icon-check" style="margin:0"
-                             />
- 
-                        <h:messages />
-                    </p:panelGrid>
- 
-                </h:form>
-            </pm:content>
- </body> 
+		<pm:header title="2wd-Login">
+
+		</pm:header>
+
+		<pm:content>
+
+			<h:form id="jsfexample">
+						<h:outputLabel for="key" value="Username" />
+						<p:inputText id="key" value="#{validation.username}"
+							required="true" requiredMessage="username is required" />
+						
+						<h:outputLabel for="value" value="Password" />
+						<p:inputText id="value" value="#{validation.password}" 
+							required="true" requiredMessage="password is required" />
+						
+						<p:commandButton value="Login" icon="ui-icon-check"
+							style="margin:0" action="#{validation.login()}" />
+						
+			 <p:messages id="messages"  autoUpdate="true" closable="true" />
+
+			</h:form>
+		</pm:content>
+	</body>
 </f:view>
 </html>

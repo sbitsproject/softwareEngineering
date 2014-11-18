@@ -21,8 +21,9 @@
 				showEffect="overlay">
 				<h2>Menu</h2>
 				<p:menu>
+				<p:menuitem value="Home" url="http://192.168.1.5:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
 					<p:submenu label="Ticket">
-						<p:menuitem value="Create" url="#" />
+						<p:menuitem value="Create" url="#"  />
 						<p:menuitem value="Manage" url="#" />
 					</p:submenu>
 					<p:submenu label="Payment">
@@ -32,20 +33,24 @@
 				</p:menu>
 			</p:overlayPanel>
 
-
+			<p:dialog header="Message" showEffect="pop" rendered="#{menuAction.flag}" >
+				<h:outputText value="Ticket Created..." />
+			</p:dialog>
 
 			<h:form id="jsfexample">
-				<p:panelGrid  >
+				<p:panelGrid>
 					<p:accordionPanel>
 						<p:tab title="Messages">
 							<h:outputText value="The story begins as Don Vito Corleon..." />
 						</p:tab>
 						<p:tab title="QuickLinks">
-							<p:commandButton  value="Create Ticket" action="#{createAction.goToCreateStep1()}" />
-							<p:commandButton  value="Display Ticket" action="#{mobileDisplay.loadDisplay()}" />
+							<p:commandButton value="Create Ticket"
+								action="#{createAction.goToCreateStep1()}" />
+							<p:commandButton value="Display Ticket"
+								action="#{mobileDisplay.loadDisplay()}" />
 						</p:tab>
 					</p:accordionPanel>
-					
+
 				</p:panelGrid>
 
 			</h:form>

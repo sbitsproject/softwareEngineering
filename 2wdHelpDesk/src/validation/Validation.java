@@ -44,7 +44,7 @@ public class Validation
         {
         	//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect Password or Username"));
         }
-        return null;
+        return "invalid";
         
     }
 }
