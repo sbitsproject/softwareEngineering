@@ -29,6 +29,7 @@ public class MenuDashboard implements Serializable {
         DashboardColumn column3 = new DefaultDashboardColumn();
          
         column1.addWidget("raised");
+        column1.addWidget("");
         column2.addWidget("assigned");
         column3.addWidget("links");
 
