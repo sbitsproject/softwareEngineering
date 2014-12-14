@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class MenuCmd 
 {
-	private String centerPanel = "dashboard.xhtml";
+	private String centerPanel = new String("dashboard.xhtml");
 
 	public String gotoMyAccount()
 	{
@@ -27,6 +27,11 @@ public class MenuCmd
 	public String signOut()
 	{
 		return "signout"; //see navigation rule in "WEB-INF/faces-config.xml"
+	}
+	
+	public void setCenterPanel(String input)
+	{
+		centerPanel = input;
 	}
 	
 	public String getCenterPanel()
