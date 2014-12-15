@@ -7,18 +7,22 @@
 
 
 <h:head>
-<title>System Create Support Event</title>
+	<title>System Create Support Event</title>
 </h:head> 
 <body>
 
-<h:form>
-    <p:dataTable var="car" value="#{supportFilterView.cars}" widgetVar="carsTable"
-                 emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredCars}">
+<h:form prependId="false">
+    <p:dataTable var="car" value="#{supportFilterView.cars}" widgetVar="carsTable" rows="10"
+                 emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredCars}"
+				paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15">
  
         <f:facet name="header">
             <p:outputPanel>
                 <h:outputText value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword" />
             </p:outputPanel>
         </f:facet>
  
@@ -75,5 +79,4 @@
 </h:form>
 	
 </body> 
- 
 </html>

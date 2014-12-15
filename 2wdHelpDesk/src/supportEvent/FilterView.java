@@ -29,7 +29,7 @@ public class FilterView implements Serializable {
         //cars = service.createCars(10);
     	//service = new CarService();
     	System.out.println("IN");
-    	cars = service.createCars(10);
+    	cars = service.createCars(30);
     	filteredCars = cars;
     	System.out.println("IN");
     }

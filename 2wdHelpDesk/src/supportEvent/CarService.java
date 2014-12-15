@@ -59,7 +59,7 @@ public class CarService implements Serializable {
     }
      
     private int getRandomYear() {
-        return (int) (Math.random() * 2 + 2012);
+        return (int) (Math.random() * 1 + 2013);
     }
      
     private String getRandomColor() {
@@ -71,7 +71,7 @@ public class CarService implements Serializable {
     }
      
     public int getRandomPrice() {
-        return (int) (Math.random() * 100000);
+        return (int) (Math.random() * 10);
     }
      
     public boolean getRandomSoldState() {
