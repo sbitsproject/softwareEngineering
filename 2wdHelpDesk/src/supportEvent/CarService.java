@@ -58,8 +58,8 @@ public class CarService implements Serializable {
         return UUID.randomUUID().toString().substring(0, 8);
     }
      
-    private int getRandomYear() {
-        return (int) (Math.random() * 1 + 2013);
+    private String getRandomYear() {
+        return (int)(Math.random() * 11 + 1) + "-" + (int)(Math.random() * 28 + 1) + "-" + (2014) ;
     }
      
     private String getRandomColor() {

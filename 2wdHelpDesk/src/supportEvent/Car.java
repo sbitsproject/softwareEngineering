@@ -11,11 +11,11 @@ public class Car implements Serializable {
 
 	String id = new String();
 	String Brand = new String();
-	int year;
+	String year = new String();
 	String color = new String();
 	int price;
 	boolean soldState;
-	public Car(String randomId, String randomBrand, int randomYear,
+	public Car(String randomId, String randomBrand, String randomYear,
 			String randomColor, int randomPrice, boolean randomSoldState) {
 		this.id=randomId;
 		this.Brand=randomBrand;
@@ -37,10 +37,10 @@ public class Car implements Serializable {
 	public void setBrand(String brand) {
 		Brand = brand;
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	public String getColor() {

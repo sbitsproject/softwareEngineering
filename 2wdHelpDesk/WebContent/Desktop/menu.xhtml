@@ -95,11 +95,14 @@
     			</f:ajax>
     		</h:form>
     		
-    		<h:form>
+    		<h:form id="managesupportevent">
+        		<f:ajax render=":centerpanel" execute="@this">
     			<h:outputText value="+ " />
-    			<p:commandLink id="manageSupportEvent" action="#{menuCmd.gotoMyAccount}">
+    			<p:commandLink id="manageSupportEvent" action="#{menuCmd.changeCenterPanel}">
         			<h:outputText value="Manage" />
+        			<f:param name="input" value="manageSupportEvent.xhtml"/>
     			</p:commandLink>
+    			</f:ajax>
     		</h:form>
             
         </p:tab>

@@ -84,4 +84,9 @@ public class FilterView implements Serializable {
     public Car getSelectedCar() {
         return selectedCar;
     }
+    
+    public void deleteCar() {
+        cars.remove(selectedCar);
+        selectedCar = null;
+    }
 }
