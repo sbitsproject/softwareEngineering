@@ -12,6 +12,16 @@
 </h:head> 
 <body>
 
+<script>
+function getWidth() {
+    return window.innerWidth;
+}
+function getHeight() {
+    return window.innerHeight;
+}
+</script>
+
+
 <h:form id="form">
     <p:dataTable var="car" value="#{supportFilterView.cars}" widgetVar="carsTable" rows="5"
                  emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredCars}"
@@ -28,7 +38,7 @@
         </f:facet>
         
         <p:column style="width:32px;text-align: center">
-             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-plusthick" title="View">
                 <f:setPropertyActionListener value="#{car}" target="#{supportFilterView.selectedCar}" />
             </p:commandButton>
         </p:column>
@@ -37,12 +47,8 @@
             <h:outputText value="#{car.id}" />
         </p:column>
  
-        <p:column filterBy="#{car.year}" headerText="Date" filterMatchMode="lte">
-            <f:facet name="filter">
-                <p:spinner onchange="PF('carsTable').filter()" styleClass="year-spinner">
-                    <f:converter converterId="javax.faces.Integer" />
-                </p:spinner>
-            </f:facet>
+        <p:column filterBy="#{car.year}" headerText="Date" filterMatchMode="contains">
+            
             <h:outputText value="#{car.year}" />
         </p:column>
  
@@ -90,25 +96,18 @@
     <h:outputText value="Resistance to PrimeFaces is futile!" />
 	</p:dialog>
     
-    <p:dialog header="Car Info" widgetVar="carDialog" resizable="true">
+    <p:dialog header="Create Support Event #{supportFilterView.selectedCar.id}"  widgetVar="carDialog" resizable="true" width="800" height="400" dynamic="true" minimizable="true" maximizable="true" appendToBody="true" >
         <p:outputPanel id="carDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty supportFilterView.selectedCar}" columnClasses="label,value">
-                <f:facet name="header">
-                    <!-- <p:graphicImage name="demo/images/car/#{supportFilterView.selectedCar.brand}-big.gif"/> -->
-                </f:facet>
- 
-                <h:outputText value="Id:" />
-                <h:outputText value="#{supportFilterView.selectedCar.id}" />
- 
-                <h:outputText value="Year" />
-                <h:outputText value="#{supportFilterView.selectedCar.year}" />
- 
-                <h:outputText value="Color:" />
-                <h:outputText value="#{supportFilterView.selectedCar.color}" style="color:#{supportFilterView.selectedCar.color}"/>
- 
-                <h:outputText value="Price" />
-                <h:outputText value="$#{supportFilterView.selectedCar.price}" />
-            </p:panelGrid>
+        	
+            	<h:form>
+            		<h:form>               
+    				<p:inputTextarea rows="5" cols="30" style="width:600px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
+    				<h:outputText id="display" />
+					</h:form>
+					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:carDetail" oncomplete="PF('carDialog').hide()"/>
+                	<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:carDetail" oncomplete="PF('carDialog').hide()" />
+            	</h:form>
+            
         </p:outputPanel>
     </p:dialog>
     
