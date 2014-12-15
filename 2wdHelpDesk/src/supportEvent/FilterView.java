@@ -20,6 +20,7 @@ public class FilterView implements Serializable {
      
     private List<Car> filteredCars;
      
+    private Car selectedCar;
     
     @ManagedProperty("#{carService2}")
     private CarService service;
@@ -75,5 +76,12 @@ public class FilterView implements Serializable {
  
     public void setService(CarService service) {
         this.service = service;
+    }
+    
+    public void setSelectedCar(Car selectedCar) {
+        this.selectedCar = selectedCar;
+    }
+    public Car getSelectedCar() {
+        return selectedCar;
     }
 }

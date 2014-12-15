@@ -26,12 +26,18 @@
                 <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword" />
             </p:outputPanel>
         </f:facet>
+        
+        <p:column style="width:32px;text-align: center">
+             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{car}" target="#{supportFilterView.selectedCar}" />
+            </p:commandButton>
+        </p:column>
  
-        <p:column filterBy="#{car.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+        <p:column filterBy="#{car.id}" headerText="Id"  filterMatchMode="contains">
             <h:outputText value="#{car.id}" />
         </p:column>
  
-        <p:column filterBy="#{car.year}" headerText="Date" footerText="lte" filterMatchMode="lte">
+        <p:column filterBy="#{car.year}" headerText="Date" filterMatchMode="lte">
             <f:facet name="filter">
                 <p:spinner onchange="PF('carsTable').filter()" styleClass="year-spinner">
                     <f:converter converterId="javax.faces.Integer" />
@@ -40,7 +46,7 @@
             <h:outputText value="#{car.year}" />
         </p:column>
  
-        <p:column filterBy="#{car.brand}" headerText="Client" footerText="exact" filterMatchMode="exact">
+        <p:column filterBy="#{car.brand}" headerText="Client" filterMatchMode="exact">
             <f:facet name="filter">
                 <p:selectOneMenu onchange="PF('carsTable').filter()" >
                     <f:selectItem itemLabel="Select" itemValue="#{null}" noSelectionOption="true" />
@@ -50,7 +56,7 @@
             <h:outputText value="#{car.brand}" />
         </p:column>
  
-        <p:column filterBy="#{car.color}" headerText="Assigned To" footerText="in" filterMatchMode="in">
+        <p:column filterBy="#{car.color}" headerText="Assigned To" filterMatchMode="in">
             <f:facet name="filter">
                 <p:selectCheckboxMenu label="Select" onchange="PF('carsTable').filter()" panelStyle="width:125px" scrollHeight="150">
                     <f:selectItems value="#{supportFilterView.colors}" />
@@ -59,7 +65,7 @@
             <h:outputText value="#{car.color}" />
         </p:column>
  
-        <p:column filterBy="#{car.sold}" headerText="Priority" footerText="equals" filterMatchMode="equals">
+        <p:column filterBy="#{car.sold}" headerText="Priority" filterMatchMode="equals">
             <f:facet name="filter">
                 <p:selectOneButton onchange="PF('carsTable').filter()">
                     <f:converter converterId="javax.faces.Boolean" />
@@ -71,12 +77,37 @@
             <h:outputText value="#{car.sold ? 'Low': 'High'}" />
         </p:column>
  
+ 		<!-- 
         <p:column filterBy="#{car.price}" headerText="Price" footerText="custom (min)" filterFunction="#{supportFilterView.filterByPrice}">
             <h:outputText value="#{car.price}">
                 <f:convertNumber currencySymbol="$" type="currency"/>
             </h:outputText>
         </p:column>
+         -->
     </p:dataTable>
+    
+    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty supportFilterView.selectedCar}" columnClasses="label,value">
+                <f:facet name="header">
+                    <!-- <p:graphicImage name="demo/images/car/#{supportFilterView.selectedCar.brand}-big.gif"/> -->
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{supportFilterView.selectedCar.id}" />
+ 
+                <h:outputText value="Year" />
+                <h:outputText value="#{supportFilterView.selectedCar.year}" />
+ 
+                <h:outputText value="Color:" />
+                <h:outputText value="#{supportFilterView.selectedCar.color}" style="color:#{supportFilterView.selectedCar.color}"/>
+ 
+                <h:outputText value="Price" />
+                <h:outputText value="$#{supportFilterView.selectedCar.price}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+    
 </h:form>
 
 </body> 
