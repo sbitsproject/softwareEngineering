@@ -1,13 +1,18 @@
 package ticket;
 
-import sunw.io.Serializable;
+import java.io.Serializable;
+
+import javax.faces.bean.ManagedBean;
+
+//import sunw.io.Serializable;
+
 
 public class Car implements Serializable {
 
-	String id;
-	String Brand;
+	String id = new String();
+	String Brand = new String();
 	int year;
-	String color;
+	String color = new String();
 	int price;
 	boolean soldState;
 	public Car(String randomId, String randomBrand, int randomYear,
@@ -54,6 +59,12 @@ public class Car implements Serializable {
 		return soldState;
 	}
 	public void setSoldState(boolean soldState) {
+		this.soldState = soldState;
+	}
+	public boolean getSold() {
+		return soldState;
+	}
+	public void setSold(boolean soldState) {
 		this.soldState = soldState;
 	}
 		

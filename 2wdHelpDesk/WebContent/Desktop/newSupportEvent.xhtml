@@ -13,7 +13,7 @@
 <body>
 
 <h:form id="form">
-    <p:dataTable var="car" value="#{supportFilterView.cars}" widgetVar="carsTable" rows="10"
+    <p:dataTable var="car" value="#{supportFilterView.cars}" widgetVar="carsTable" rows="5"
                  emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredCars}"
 				paginator="true"
                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -86,7 +86,11 @@
          -->
     </p:dataTable>
     
-    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+    <h:outputText value="Resistance to PrimeFaces is futile!" />
+	</p:dialog>
+    
+    <p:dialog header="Car Info" widgetVar="carDialog" resizable="true">
         <p:outputPanel id="carDetail" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{not empty supportFilterView.selectedCar}" columnClasses="label,value">
                 <f:facet name="header">
