@@ -1,12 +1,14 @@
 package menudesktop;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
+@SessionScoped
 public class MenuCmd 
 {
-	private String centerPanel = new String("dashboard.xhtml");
+	private String centerPanel = "dashboard.xhtml";
 
 	public String gotoMyAccount()
 	{
