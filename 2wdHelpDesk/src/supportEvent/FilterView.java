@@ -9,34 +9,33 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-//import org.primefaces.showcase.domain.Car;
-//import org.primefaces.showcase.service.CarService;
+//import org.primefaces.showcase.domain.Ticket;
+//import org.primefaces.showcase.service.TicketService;
 
 @ManagedBean(name="supportFilterView")
 @ViewScoped
 public class FilterView implements Serializable {
      
-    private List<Car> cars;
+    private List<Ticket> Tickets;
      
-    private List<Car> filteredCars;
+    private List<Ticket> filteredTickets;
      
-    private Car selectedCar;
+    private Ticket selectedTicket;
     
-    @ManagedProperty("#{carService2}")
-    private CarService service;
+    @ManagedProperty("#{ticketService}")
+    private TicketService service;
     
     @PostConstruct
     public void init() {
-        //cars = service.createCars(10);
-    	//service = new CarService();
+        //Tickets = service.createTickets(10);
+    	//service = new TicketService();
     	System.out.println("IN");
-    	cars = service.createCars(30);
-    	//filteredCars = cars;
+    	Tickets = service.createTickets(30);
+    	//filteredTickets = Tickets;
     	System.out.println("IN");
     }
      
-    public boolean filterByPrice(Object value, Object filter, Locale locale) {
-    	System.out.println("OUT");
+    public boolean filterByTime(Object value, Object filter, Locale locale) {
         String filterText = (filter == null) ? null : filter.toString().trim();
         if(filterText == null||filterText.equals("")) {
             return true;
@@ -45,48 +44,46 @@ public class FilterView implements Serializable {
         if(value == null) {
             return false;
         }
-        System.out.println(((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0);
-    	System.out.println("OUT");
         return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
      
-    public List<String> getBrands() {
+    public List<String> getClients() {
     	System.out.println(service.getClient());
     	System.out.println("OUT");
         return service.getClient();
     }
      
-    public List<String> getColors() {
+    public List<String> getAssigned() {
     	System.out.println(service.getAssigned());
     	System.out.println("OUT");
         return service.getAssigned();
     }
      
-    public List<Car> getCars() {
-        return cars;
+    public List<Ticket> getTickets() {
+        return Tickets;
     }
  
-    public List<Car> getFilteredCars() {
-        return filteredCars;
+    public List<Ticket> getFilteredTickets() {
+        return filteredTickets;
     }
  
-    public void setFilteredCars(List<Car> filteredCars) {
-        this.filteredCars = filteredCars;
+    public void setFilteredTickets(List<Ticket> filteredTickets) {
+        this.filteredTickets = filteredTickets;
     }
  
-    public void setService(CarService service) {
+    public void setService(TicketService service) {
         this.service = service;
     }
     
-    public void setSelectedCar(Car selectedCar) {
-        this.selectedCar = selectedCar;
+    public void setSelectedTicket(Ticket selectedTicket) {
+        this.selectedTicket = selectedTicket;
     }
-    public Car getSelectedCar() {
-        return selectedCar;
+    public Ticket getSelectedTicket() {
+        return selectedTicket;
     }
     
-    public void deleteCar() {
-        cars.remove(selectedCar);
-        selectedCar = null;
+    public void deleteTicket() {
+        Tickets.remove(selectedTicket);
+        selectedTicket = null;
     }
 }

@@ -24,14 +24,14 @@ function getHeight() {
 
 <h:form id="form">
 
-		<p:contextMenu for="cars">
-        	<p:menuitem value="Edit" update="carDetail" icon="ui-icon-search" oncomplete="PF('carDialog').show()"/>
-        	<p:menuitem value="Mark resolved" update="cars" icon="ui-icon-close" actionListener="#{supportFilterView.deleteCar}"/>
+		<p:contextMenu for="tickets">
+        	<p:menuitem value="Edit" update="ticketDetail" icon="ui-icon-search" oncomplete="PF('ticketDialog').show()"/>
+        	<p:menuitem value="Mark resolved" update="tickets" icon="ui-icon-close" actionListener="#{supportFilterView.deleteTicket}"/>
     	</p:contextMenu>
     	
-    <p:dataTable id="cars" var="car" value="#{supportFilterView.cars}" widgetVar="carsTable" rows="6" rowKey="#{car.id}"
-    			selection="#{supportFilterView.selectedCar}" selectionMode="single"
-                emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredCars}"
+    <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.tickets}" widgetVar="ticketsTable" rows="6" rowKey="#{ticket.id}"
+    			selection="#{supportFilterView.selectedTicket}" selectionMode="single"
+                emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredTickets}"
 				paginator="true"
                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 rowsPerPageTemplate="5,10,15">
@@ -41,67 +41,67 @@ function getHeight() {
             <p:outputPanel>
                 <h:outputText value="Search all fields:" />
                 
-                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword" />
+                <p:inputText id="globalFilter" onkeyup="PF('ticketsTable').filter()" style="width:150px" placeholder="Enter keyword" />
             </p:outputPanel>
         </f:facet>
         
         <!-- 
         <p:column style="width:32px;text-align: center">
-             <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="ui-icon-pencil" title="View">
-                <f:setPropertyActionListener value="#{car}" target="#{supportFilterView.selectedCar}" />
+             <p:commandButton update=":form:ticketDetail" oncomplete="PF('ticketDialog').show()" icon="ui-icon-pencil" title="View">
+                <f:setPropertyActionListener value="#{ticket}" target="#{supportFilterView.selectedTicket}" />
             </p:commandButton>
         </p:column>
  		 -->
  		 
-        <p:column filterBy="#{car.id}" headerText="Id"  filterMatchMode="contains">
-            <h:outputText value="#{car.id}" />
+        <p:column filterBy="#{ticket.id}" headerText="Id"  filterMatchMode="contains">
+            <h:outputText value="#{ticket.id}" />
         </p:column>
  
-        <p:column filterBy="#{car.year}" headerText="Date" filterMatchMode="contains">
+        <p:column filterBy="#{ticket.date}" headerText="Date" filterMatchMode="contains">
             
-            <h:outputText value="#{car.year}" />
+            <h:outputText value="#{ticket.date}" />
         </p:column>
  
-        <p:column filterBy="#{car.brand}" headerText="Client" filterMatchMode="exact">
+        <p:column filterBy="#{ticket.client}" headerText="Client" filterMatchMode="exact">
             <f:facet name="filter">
-                <p:selectOneMenu onchange="PF('carsTable').filter()" >
+                <p:selectOneMenu onchange="PF('ticketsTable').filter()" >
                     <f:selectItem itemLabel="Select" itemValue="#{null}" noSelectionOption="true" />
-                    <f:selectItems value="#{supportFilterView.brands}" />
+                    <f:selectItems value="#{supportFilterView.clients}" />
                 </p:selectOneMenu>
             </f:facet>
-            <h:outputText value="#{car.brand}" />
+            <h:outputText value="#{ticket.client}" />
         </p:column>
  
-        <p:column filterBy="#{car.color}" headerText="Assigned To" filterMatchMode="in">
+        <p:column filterBy="#{ticket.assigned}" headerText="Assigned To" filterMatchMode="in">
             <f:facet name="filter">
-                <p:selectCheckboxMenu label="Select" onchange="PF('carsTable').filter()" panelStyle="width:125px" scrollHeight="150">
-                    <f:selectItems value="#{supportFilterView.colors}" />
+                <p:selectCheckboxMenu label="Select" onchange="PF('ticketsTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                    <f:selectItems value="#{supportFilterView.assigned}" />
                 </p:selectCheckboxMenu>
             </f:facet>
-            <h:outputText value="#{car.color}" />
+            <h:outputText value="#{ticket.assigned}" />
         </p:column>
  
-        <p:column filterBy="#{car.sold}" headerText="Priority" filterMatchMode="equals">
+        <p:column filterBy="#{ticket.priority}" headerText="Priority" filterMatchMode="equals">
             <f:facet name="filter">
-                <p:selectOneButton onchange="PF('carsTable').filter()">
+                <p:selectOneButton onchange="PF('ticketsTable').filter()">
                     <f:converter converterId="javax.faces.Boolean" />
                     <f:selectItem itemLabel="All" itemValue="" />
                     <f:selectItem itemLabel="Low" itemValue="true" />
                     <f:selectItem itemLabel="High" itemValue="false" />
                 </p:selectOneButton>
             </f:facet>
-            <h:outputText value="#{car.sold ? 'Low': 'High'}" />
+            <h:outputText value="#{ticket.priority ? 'Low': 'High'}" />
         </p:column>
  
  		 
-        <!--<p:column filterBy="#{car.price}" headerText="Time Spent" filterMatchMode="lte"> -->
+        <!--<p:column filterBy="#{ticket.time}" headerText="Time Spent" filterMatchMode="lte"> -->
         <p:column headerText="Time Spent" >
-            <h:outputText value="#{car.price} min">
+            <h:outputText value="#{ticket.time} min">
                 <!-- <f:convertNumber currencySymbol="$" type="currency"/> -->
             </h:outputText>
             <!--
             <f:facet name="filter">
-                <p:spinner onchange="PF('carsTable').filter()" size="3" styleClass="year-spinner">
+                <p:spinner onchange="PF('ticketsTable').filter()" size="3" styleClass="year-spinner">
                     <f:converter converterId="javax.faces.Integer" />
                 </p:spinner>
             </f:facet>
@@ -110,26 +110,26 @@ function getHeight() {
          
     </p:dataTable>
     
-    <p:dialog header="Manage Support Event #{supportFilterView.selectedCar.id}"  widgetVar="carDialog" resizable="true" width="800" height="400" dynamic="true" minimizable="true" maximizable="true" appendToBody="true" >
-        <p:outputPanel id="carDetail" style="text-align:center;">
-        	<p:dataTable var="dialogTable" value="#{supportFilterView.selectedCar}">
+    <p:dialog header="Manage Support Event #{supportFilterView.selectedTicket.id}"  widgetVar="ticketDialog" resizable="true" width="850" height="450" dynamic="true" minimizable="true" maximizable="true" appendToBody="true" >
+        <p:outputPanel id="ticketDetail" style="text-align:center;">
+        	<p:dataTable var="dialogTable" value="#{supportFilterView.selectedTicket}">
                 <p:column headerText="Ticket Id">
-        			<h:outputText value="#{supportFilterView.selectedCar.id}" />
+        			<h:outputText value="#{supportFilterView.selectedTicket.id}" />
     			</p:column>
  
 			    <p:column headerText="Date Created">
-			        <h:outputText value="#{supportFilterView.selectedCar.year}" />
+			        <h:outputText value="#{supportFilterView.selectedTicket.date}" />
 			    </p:column>
 			 	
 			    <p:column headerText="Client">
-			        <h:outputText value="#{supportFilterView.selectedCar.brand}" />
+			        <h:outputText value="#{supportFilterView.selectedTicket.client}" />
 			    </p:column>
 			 
 			    <p:column headerText="Assigned To">
-			        <h:outputText value="#{supportFilterView.selectedCar.color}" />
+			        <h:outputText value="#{supportFilterView.selectedTicket.assigned}" />
 			    </p:column>
 			    <p:column headerText="Time Spent">
-			        <h:outputText value="#{supportFilterView.selectedCar.price} min" />
+			        <h:outputText value="#{supportFilterView.selectedTicket.time} min" />
 			    </p:column>
             </p:dataTable>
             	<h:form>
@@ -137,8 +137,8 @@ function getHeight() {
     				<p:inputTextarea rows="5" cols="30" style="width:600px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
     				<h:outputText id="display" />
 					</h:form>
-					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:carDetail" oncomplete="PF('carDialog').hide()"/>
-                	<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:carDetail" oncomplete="PF('carDialog').hide()" />
+					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()"/>
+                	<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()" />
             	</h:form>
             
         </p:outputPanel>
