@@ -98,10 +98,10 @@
     		<h:form id="managesupportevent">
         		<f:ajax render=":centerpanel" execute="@this">
     			<h:outputText value="+ " />
-    			<p:commandLink id="manageSupportEvent" action="#{menuCmd.changeCenterPanel}">
+    			<h:commandLink id="manageSupportEvent" action="#{menuCmd.changeCenterPanel}">
         			<h:outputText value="Manage" />
         			<f:param name="input" value="manageSupportEvent.xhtml"/>
-    			</p:commandLink>
+    			</h:commandLink>
     			</f:ajax>
     		</h:form>
             
@@ -110,7 +110,30 @@
     </p:layoutUnit>
  
     <p:layoutUnit position="east" size="200" header="QuickLinks" resizable="false" closable="true" collapsible="true" effect="drop">
-        <h:outputText value="Create Ticket" />
+    	<h:form id="dashboard">
+        		<f:ajax render=":centerpanel" execute="@this">
+    			<h:commandLink id="dashBoard" action="#{menuCmd.changeCenterPanel}">
+        			<h:outputText value="Goto DashBoard" />
+        			<f:param name="input" value="dashboard.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    	</h:form>
+        <h:form id="createticket">
+        		<f:ajax render=":centerpanel" execute="@this">
+                <h:commandLink id="createTicketLink" action="#{menuCmd.changeCenterPanel}" >
+        			<h:outputText value="CreateTicket" />
+        			<f:param name="input" value="new.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    	</h:form>
+    	<h:form id="managesupportevent">
+        		<f:ajax render=":centerpanel" execute="@this">
+    			<h:commandLink id="manageSupportEvent" action="#{menuCmd.changeCenterPanel}">
+        			<h:outputText value="Manage Tickets" />
+        			<f:param name="input" value="manageSupportEvent.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    	</h:form>
     </p:layoutUnit>
  
     <p:layoutUnit position="center" >

@@ -36,12 +36,12 @@ public class CarService implements Serializable {
         client[0] = "Atmel";
         client[1] = "Intel";
         client[2] = "Microchip";
-        client[3] = "JK Microsystems";
+        client[3] = "Microsystems";
         client[4] = "Inspironix";
         client[5] = "Najsoft";
         client[6] = "Oracle";
-        client[7] = "K Tech";
-        client[8] = "Helix Interactive";
+        client[7] = "Tech";
+        client[8] = "Helix Inc.";
         client[9] = "Dijkstra";
     }
      
@@ -71,7 +71,7 @@ public class CarService implements Serializable {
     }
      
     public int getRandomPrice() {
-        return (int) (Math.random() * 10);
+        return (int) (Math.random() * 100);
     }
      
     public boolean getRandomSoldState() {
