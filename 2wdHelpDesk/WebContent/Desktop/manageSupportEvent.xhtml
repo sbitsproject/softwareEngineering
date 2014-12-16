@@ -110,9 +110,28 @@ function getHeight() {
          
     </p:dataTable>
     
-    <p:dialog header="Create Support Event #{supportFilterView.selectedCar.id}"  widgetVar="carDialog" resizable="true" width="800" height="400" dynamic="true" minimizable="true" maximizable="true" appendToBody="true" >
+    <p:dialog header="Manage Support Event #{supportFilterView.selectedCar.id}"  widgetVar="carDialog" resizable="true" width="800" height="400" dynamic="true" minimizable="true" maximizable="true" appendToBody="true" >
         <p:outputPanel id="carDetail" style="text-align:center;">
-        	
+        	<p:dataTable var="dialogTable" value="#{supportFilterView.selectedCar}">
+                <p:column headerText="Ticket Id">
+        			<h:outputText value="#{supportFilterView.selectedCar.id}" />
+    			</p:column>
+ 
+			    <p:column headerText="Date Created">
+			        <h:outputText value="#{supportFilterView.selectedCar.year}" />
+			    </p:column>
+			 	
+			    <p:column headerText="Client">
+			        <h:outputText value="#{supportFilterView.selectedCar.brand}" />
+			    </p:column>
+			 
+			    <p:column headerText="Assigned To">
+			        <h:outputText value="#{supportFilterView.selectedCar.color}" />
+			    </p:column>
+			    <p:column headerText="Time Spent">
+			        <h:outputText value="#{supportFilterView.selectedCar.price} min" />
+			    </p:column>
+            </p:dataTable>
             	<h:form>
             		<h:form>               
     				<p:inputTextarea rows="5" cols="30" style="width:600px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
