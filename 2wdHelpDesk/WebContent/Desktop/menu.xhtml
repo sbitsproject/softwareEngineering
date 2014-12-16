@@ -106,6 +106,38 @@
     		</h:form>
             
         </p:tab>
+        <p:tab title="Finance">
+            <h:form id="receivepayment">
+        		<f:ajax render=":centerpanel" execute="@this">
+        		<h:outputText value="+ " />
+                <h:commandLink id="receivePayment" action="#{menuCmd.changeCenterPanel}" >
+        			<h:outputText value="Payment" />
+        			<f:param name="input" value="dashboard.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    		</h:form>
+    		
+    		<h:form id="createinvioce">
+        		<f:ajax render=":centerpanel" execute="@this">
+    			<h:outputText value="+ " />
+    			<h:commandLink id="createInvioce" action="#{menuCmd.changeCenterPanel}">
+        			<h:outputText value="Invoice" />
+        			<f:param name="input" value="dashboard.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    		</h:form>
+    		
+    		<h:form id="deposit">
+        		<f:ajax render=":centerpanel" execute="@this">
+    			<h:outputText value="+ " />
+    			<h:commandLink id="Deposit" action="#{menuCmd.changeCenterPanel}">
+        			<h:outputText value="Deposit" />
+        			<f:param name="input" value="dashboard.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
+    		</h:form>
+            
+        </p:tab>
         </p:accordionPanel>
     </p:layoutUnit>
  
