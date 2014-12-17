@@ -14,25 +14,26 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name="supportFilterView")
 @ViewScoped
-public class FilterView implements Serializable {
+public class supportFilterView implements Serializable {
      
-    private List<Ticket> Tickets;
+    private List<supportTicket> Tickets;
+    private List<supportTicket> managedTickets;
+    
+    private List<supportTicket> filteredTickets;
      
-    private List<Ticket> filteredTickets;
-     
-    private Ticket selectedTicket;
+    private supportTicket selectedTicket;
     
     @ManagedProperty("#{ticketService}")
-    private TicketService service;
+    private supportTicketService service;
     
     @PostConstruct
     public void init() {
         //Tickets = service.createTickets(10);
     	//service = new TicketService();
-    	System.out.println("IN");
+    	//System.out.println("IN");
     	Tickets = service.createTickets(30);
     	//filteredTickets = Tickets;
-    	System.out.println("IN");
+    	//System.out.println("IN");
     }
      
     public boolean filterByTime(Object value, Object filter, Locale locale) {
@@ -59,26 +60,26 @@ public class FilterView implements Serializable {
         return service.getAssigned();
     }
      
-    public List<Ticket> getTickets() {
+    public List<supportTicket> getTickets() {
         return Tickets;
     }
  
-    public List<Ticket> getFilteredTickets() {
+    public List<supportTicket> getFilteredTickets() {
         return filteredTickets;
     }
  
-    public void setFilteredTickets(List<Ticket> filteredTickets) {
+    public void setFilteredTickets(List<supportTicket> filteredTickets) {
         this.filteredTickets = filteredTickets;
     }
  
-    public void setService(TicketService service) {
+    public void setService(supportTicketService service) {
         this.service = service;
     }
     
-    public void setSelectedTicket(Ticket selectedTicket) {
+    public void setSelectedTicket(supportTicket selectedTicket) {
         this.selectedTicket = selectedTicket;
     }
-    public Ticket getSelectedTicket() {
+    public supportTicket getSelectedTicket() {
         return selectedTicket;
     }
     

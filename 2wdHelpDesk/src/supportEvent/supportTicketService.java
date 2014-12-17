@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "ticketService")
 @ApplicationScoped
-public class TicketService implements Serializable {
+public class supportTicketService implements Serializable {
      
     private final static String[] assigned;
      
@@ -45,10 +45,10 @@ public class TicketService implements Serializable {
         client[9] = "Dijkstra";
     }
      
-    public List<Ticket> createTickets(int size) {
-        List<Ticket> list = new ArrayList<Ticket>();
+    public List<supportTicket> createTickets(int size) {
+        List<supportTicket> list = new ArrayList<supportTicket>();
         for(int i = 0 ; i < size ; i++) {
-            list.add(new Ticket(getRandomId(), getRandomClient(), getRandomDate(), getRandomAssigned(), getRandomTime(), getRandomPriorityState()));
+            list.add(new supportTicket(getRandomId(), getRandomClient(), getRandomDate(), getRandomAssigned(), getRandomTime(), getRandomPriorityState()));
         }
          
         return list;

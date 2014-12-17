@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 //import sunw.io.Serializable;
 
 
-public class Ticket implements Serializable {
+public class supportTicket implements Serializable {
 
 	String id = new String();
 	String Client = new String();
@@ -15,7 +15,7 @@ public class Ticket implements Serializable {
 	String Assigned = new String();
 	int Time;
 	boolean PriorityState;
-	public Ticket(String randomId, String randomClient, String randomDate,
+	public supportTicket(String randomId, String randomClient, String randomDate,
 			String randomAssigned, int randomTime, boolean randomPriorityState) {
 		this.id=randomId;
 		this.Client=randomClient;
