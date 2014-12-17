@@ -29,7 +29,7 @@ function getHeight() {
         	<p:menuitem value="Mark resolved" update="tickets" icon="ui-icon-close" actionListener="#{supportFilterView.deleteTicket}"/>
     	</p:contextMenu>
 
-    <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.tickets}" widgetVar="ticketsTable" rows="7" rowKey="#{ticket.id}"
+    <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.tickets}" widgetVar="ticketsTable" rows="9" rowKey="#{ticket.id}"
     			selection="#{supportFilterView.selectedTicket}" selectionMode="single"
                  emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredTickets}"
 				paginator="true"
@@ -80,16 +80,13 @@ function getHeight() {
             <h:outputText value="#{ticket.assigned}" />
         </p:column>
  
-        <p:column filterBy="#{ticket.priority}" headerText="Priority" filterMatchMode="equals">
+        <p:column filterBy="#{ticket.priority}" headerText="Priority" filterMatchMode="in">
             <f:facet name="filter">
-                <p:selectOneButton onchange="PF('ticketsTable').filter()">
-                    <f:converter converterId="javax.faces.Boolean" />
-                    <f:selectItem itemLabel="All" itemValue="" />
-                    <f:selectItem itemLabel="Low" itemValue="true" />
-                    <f:selectItem itemLabel="High" itemValue="false" />
-                </p:selectOneButton>
+                <p:selectCheckboxMenu label="Select" onchange="PF('ticketsTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                    <f:selectItems value="#{supportFilterView.priorityList}" />
+                </p:selectCheckboxMenu>
             </f:facet>
-            <h:outputText value="#{ticket.priority ? 'Low': 'High'}" />
+            <h:outputText value="#{ticket.priority}" />
         </p:column>
  
  		<!-- 
@@ -143,7 +140,7 @@ function getHeight() {
             <!-- </p:panelGrid>  -->
             	<h:form>
             		<h:form>               
-    				<p:inputTextarea rows="5" cols="30" style="width:600px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
+    				<p:inputTextarea rows="5" cols="30" style="width:800px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
     				<h:outputText id="display" />
 					</h:form>
 					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()"/>

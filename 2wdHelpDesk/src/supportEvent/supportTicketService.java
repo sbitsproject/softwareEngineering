@@ -18,7 +18,9 @@ public class supportTicketService implements Serializable {
     private final static String[] assigned;
      
     private final static String[] client;
-     
+    
+    private final static String[] priorityList = {"High", "Medium", "Low"};
+    
     static {
     	assigned = new String[10];
     	assigned[0] = "Andrew";
@@ -74,8 +76,9 @@ public class supportTicketService implements Serializable {
         return (int) (Math.random() * 100);
     }
      
-    public boolean getRandomPriorityState() {
-        return (Math.random() > 0.5) ? true: false;
+    public String getRandomPriorityState() {
+    	
+        return (Math.random() > 0.5) ? "Low" : (Math.random() > 0.5) ? "Medium": "High";
     }
  
     public List<String> getAssigned() {
@@ -84,5 +87,9 @@ public class supportTicketService implements Serializable {
      
     public List<String> getClient() {
         return Arrays.asList(client);
+    }
+    
+    public List<String> getPriorityList() {
+        return Arrays.asList(priorityList);
     }
 }

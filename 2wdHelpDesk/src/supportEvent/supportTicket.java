@@ -14,9 +14,9 @@ public class supportTicket implements Serializable {
 	String Date = new String();
 	String Assigned = new String();
 	int Time;
-	boolean PriorityState;
+	String PriorityState;
 	public supportTicket(String randomId, String randomClient, String randomDate,
-			String randomAssigned, int randomTime, boolean randomPriorityState) {
+			String randomAssigned, int randomTime, String randomPriorityState) {
 		this.id=randomId;
 		this.Client=randomClient;
 		this.Date=randomDate;
@@ -55,16 +55,16 @@ public class supportTicket implements Serializable {
 	public void setTime(int Time) {
 		this.Time = Time;
 	}
-	public boolean isPriorityState() {
+	public String isPriorityState() {
 		return PriorityState;
 	}
-	public void setPriorityState(boolean PriorityState) {
+	public void setPriorityState(String PriorityState) {
 		this.PriorityState = PriorityState;
 	}
-	public boolean getPriority() {
+	public String getPriority() {
 		return PriorityState;
 	}
-	public void setPriority(boolean PriorityState) {
+	public void setPriority(String PriorityState) {
 		this.PriorityState = PriorityState;
 	}
 		

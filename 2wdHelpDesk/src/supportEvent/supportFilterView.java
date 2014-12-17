@@ -49,15 +49,15 @@ public class supportFilterView implements Serializable {
     }
      
     public List<String> getClients() {
-    	System.out.println(service.getClient());
-    	System.out.println("OUT");
         return service.getClient();
     }
      
     public List<String> getAssigned() {
-    	System.out.println(service.getAssigned());
-    	System.out.println("OUT");
         return service.getAssigned();
+    }
+    
+    public List<String> getPriorityList() {
+        return service.getPriorityList();
     }
      
     public List<supportTicket> getTickets() {
