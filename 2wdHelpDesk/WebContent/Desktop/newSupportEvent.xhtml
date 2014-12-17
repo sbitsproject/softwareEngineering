@@ -26,8 +26,8 @@ function getHeight() {
 
 	<p:contextMenu for="tickets">
         	<p:menuitem value="Create Support Event" update="ticketDetail" icon="ui-icon-search" oncomplete="PF('ticketDialog').show()"/>
-        	<p:menuitem value="Mark resolved" update="tickets" icon="ui-icon-close" actionListener="#{supportFilterView.deleteTicket}"/>
-    	</p:contextMenu>
+        	<p:menuitem value="Mark resolved" update="tickets" icon="ui-icon-close" actionListener="#{supportFilterView.moveToManagedSupportEvent}"/>
+    </p:contextMenu>
 
     <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.tickets}" widgetVar="ticketsTable" rows="9" rowKey="#{ticket.id}"
     			selection="#{supportFilterView.selectedTicket}" selectionMode="single"
@@ -143,7 +143,7 @@ function getHeight() {
     				<p:inputTextarea rows="5" cols="30" style="width:800px;height:300px;" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
     				<h:outputText id="display" />
 					</h:form>
-					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()"/>
+					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:tickets,:form:ticketDetail" oncomplete="PF('ticketDialog').hide()" action="#{supportFilterView.moveToManagedSupportEvent}"/>
                 	<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()" />
             	</h:form>
             

@@ -29,7 +29,7 @@ function getHeight() {
         	<p:menuitem value="Mark resolved" update="tickets" icon="ui-icon-close" actionListener="#{supportFilterView.deleteTicket}"/>
     	</p:contextMenu>
     	
-    <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.tickets}" widgetVar="ticketsTable" rows="9" rowKey="#{ticket.id}"
+    <p:dataTable id="tickets" var="ticket" value="#{supportFilterView.managedTickets}" widgetVar="ticketsTable" rows="9" rowKey="#{ticket.id}"
     			selection="#{supportFilterView.selectedTicket}" selectionMode="single"
                 emptyMessage="No tickets found with given criteria" filteredValue="#{supportFilterView.filteredTickets}"
 				paginator="true"

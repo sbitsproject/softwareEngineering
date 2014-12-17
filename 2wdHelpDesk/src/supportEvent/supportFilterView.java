@@ -20,7 +20,8 @@ public class supportFilterView implements Serializable {
     private List<supportTicket> managedTickets;
     
     private List<supportTicket> filteredTickets;
-     
+    private List<supportTicket> filteredManagedTickets;
+    
     private supportTicket selectedTicket;
     
     @ManagedProperty("#{ticketService}")
@@ -34,6 +35,7 @@ public class supportFilterView implements Serializable {
     	Tickets = service.createTickets(30);
     	//filteredTickets = Tickets;
     	//System.out.println("IN");
+    	managedTickets = service.createTickets(0);
     }
      
     public boolean filterByTime(Object value, Object filter, Locale locale) {
@@ -63,9 +65,15 @@ public class supportFilterView implements Serializable {
     public List<supportTicket> getTickets() {
         return Tickets;
     }
+    public List<supportTicket> getManagedTickets() {
+        return managedTickets;
+    }
  
     public List<supportTicket> getFilteredTickets() {
         return filteredTickets;
+    }
+    public List<supportTicket> getFilteredManagedTickets() {
+        return filteredManagedTickets;
     }
  
     public void setFilteredTickets(List<supportTicket> filteredTickets) {
@@ -84,6 +92,12 @@ public class supportFilterView implements Serializable {
     }
     
     public void deleteTicket() {
+        Tickets.remove(selectedTicket);
+        selectedTicket = null;
+    }
+    
+    public void moveToManagedSupportEvent() {
+    	managedTickets.add(selectedTicket);
         Tickets.remove(selectedTicket);
         selectedTicket = null;
     }
