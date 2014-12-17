@@ -39,12 +39,13 @@ p {
 </style>
 <title>New Ticket</title>
 </h:head>
-<body style="font-size:10px">   
+<!--  <body style="font-size:10px">   -->
+<body>
 <h:form>
     
     <p:growl id="growl" sticky="true" showDetail="true"/>
  
-   
+   <p:wizard >
         <p:tab id="ticket" title="Ticket">
             <p:panel header="Ticket Details">
                 <p:messages />
@@ -160,22 +161,22 @@ p {
                     <p:inputText value="#{softwares.serialNumber}" />
  
                     <h:outputText value="Purchase Date: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{softwares.purchaseDate}" />
                 
                     
                     <h:outputText value="Warranty: " />
-                    <p:inputText value="#{userWizard.user.postalCode}" />
+                    <p:inputText value="#{softwares.warranty}" />
                    
                     
                 </h:panelGrid>
       
-          <p:commandButton value="Sumbit Ticket" icon="ui-icon-check"
-					action="#{createAction.saveAll()}" />
+          <h:commandButton value="Sumbit Ticket" icon="ui-icon-check"
+					action="#{createAction.saveAll}" />
  
                
             </p:panel>
         </p:tab>
-   
+   </p:wizard>
  
 </h:form>
   </body>

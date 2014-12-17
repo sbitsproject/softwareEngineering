@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class Validation 
 {
-    private connector.driver database = new connector.driver();
+    
     private String username;
     private String password;
  
@@ -30,7 +30,7 @@ public class Validation
     }
  
     public String login() {
-    	
+    	connector.driver database = new connector.driver();
     	String[] value_constraints = {password, username};
     	String[] column_constraints = {"password", "firstName"};
         //String validate_password = database.retrieve_from_table("user", password, "password");
