@@ -52,6 +52,7 @@ public class CreateAction {
 
 	
 	public String saveAll(){
+		System.out.println("came to save");
 		SaveTicketDetailsRequest request = new SaveTicketDetailsRequest();
 		Tickets ticket = (Tickets) getSessionBean("tickets");
 		Devices device = (Devices) getSessionBean("devices");
@@ -110,6 +111,7 @@ public class CreateAction {
 		
 		MenuAction menu = (MenuAction) getSessionBean("menuAction");
 		menu.setFlag(true);
+		System.out.println("last");
 		return "done";
 	}
 	
