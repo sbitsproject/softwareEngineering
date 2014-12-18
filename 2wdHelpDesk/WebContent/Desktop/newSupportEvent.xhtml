@@ -141,9 +141,7 @@ function getHeight() {
 						 -->
 						 
 		        			<p:commandButton value="Start" id="submit" icon="ui-icon-check" action="#{supportEventDriver1.checkSupportCreation}">
-								<f:param name="id" value="#{ticket.id}"/>
-								<f:param name="user" value="#{validation.username}"/>
-								<f:param name="assUser" value="#{validation.username}"/>
+								<f:param name="idVal" value="#{ticket.id}"/>
 							</p:commandButton>
 						
                 		<p:commandButton value="Stop" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" />            			

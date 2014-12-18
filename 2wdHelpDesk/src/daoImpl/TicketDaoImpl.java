@@ -28,9 +28,9 @@ public class TicketDaoImpl {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 
-	private String connectionUrl = "jdbc:mysql://localhost:3306/machine_learning";
+	private String connectionUrl = "jdbc:mysql://10.114.104.3:3306/test";
 	private String connectionUser = "root";
-	private String connectionPassword = "";
+	private String connectionPassword = "root";
 	
 	public TicketDaoImpl() 
 	{
