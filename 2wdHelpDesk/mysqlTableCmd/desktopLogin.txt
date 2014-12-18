@@ -10,7 +10,9 @@ description VARCHAR (2000),
 ticketCreated DATETIME,
 ticketEnded DATETIME,
 deviceIds VARCHAR(100),
-softwareIds VARCHAR(100))
+softwareIds VARCHAR(100)),
+type varchar(15),
+type varchar(500)
 ;
 
 
