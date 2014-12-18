@@ -10,10 +10,10 @@ description VARCHAR (2000),
 ticketCreated DATETIME,
 ticketEnded DATETIME,
 deviceIds VARCHAR(100),
-softwareIds VARCHAR(100)),
+softwareIds VARCHAR(100),
 type varchar(15),
 comments varchar(500)
-;
+);
 
 
 create table Devices (
@@ -54,8 +54,30 @@ create table ticketassignment
 (
 ticketid int,
 userid int
-
 );
+
+create table supportEvent
+(
+supportEventID int(30),
+createdBy varchar(30),
+supportEventCreated DATETIME,
+supportEventEnded DATETIME,
+TicketID int (30)
+);
+
+create table supportAgreement
+(
+companyID int (30),
+supportType varchar (30),
+perHourCharge int (255)
+);
+
+create table invoiceTable
+(
+companyID int (30),
+invoiceCreated DATE,
+
+
 
 
 
