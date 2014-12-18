@@ -103,15 +103,26 @@ function getHeight() {
          -->
         
         <p:rowExpansion  id="ticketDetail">
-        <p:accordionPanel activeIndex="1">
+        <p:accordionPanel activeIndex="1"> 
         	<p:tab title="Manage Support Event">
             	<h:form id="managesupportevent">
-        			 <p:dataTable var="dialogTable" value="#{ticket}">
+        			 <p:dataTable var="dialogTable" value="#{ticket}" editable="true">
+        			 	<p:column style="width:32px">
+          				 	<p:rowEditor />
+       					</p:column>
         			 	<p:column headerText="No." style="width:32px">
 					        <h:outputText value="1" />
 					    </p:column>
 					    <p:column headerText="Assigned To">
-					        <h:outputText value="#{ticket.assigned}" />
+                   			<p:cellEditor>
+				               <f:facet name="output"><h:outputText value="#{ticket.assigned}" /></f:facet>
+				               <f:facet name="input">
+				                   <h:selectOneMenu value="#{ticket.assigned}" style="width:100%">
+		                       			<f:selectItems value="#{supportFilterView.assigned}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+		                   			</h:selectOneMenu>
+				               </f:facet>
+				           </p:cellEditor>
+							        
 					    </p:column>
 					    <p:column headerText="Time Spent">
 					        <h:outputText value="#{ticket.time} min" />
