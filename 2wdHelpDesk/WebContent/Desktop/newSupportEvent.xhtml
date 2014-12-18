@@ -125,12 +125,14 @@ function getHeight() {
         			<p:outputPanel id="ticketDetail" style="text-align:center;">
         		
             		<h:form>
+            			<!-- 
             			<h:form>               
     						<p:inputTextarea rows="5" cols="30" style="width:400px;height:150px;" autoResize="false" />
     						<h:outputText id="display" />
 						</h:form>
-						<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()"/>
-                		<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()" />
+						 -->
+						<p:commandButton value="Start" id="submit" icon="ui-icon-check" update=":form:ticketDetail" />
+                		<p:commandButton value="Stop" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" />            			
             		</h:form>
             
        			 </p:outputPanel>
