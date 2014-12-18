@@ -21,7 +21,7 @@
 	</style>
 </h:head>
 
-<h:body onmouseover="PF('bar').hide()">
+<h:body onmouseover="PF('bar').hide()" style="font-size:10px">
 
 <!-- Notification Bar -->
 <p:notificationBar  position="top" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
@@ -77,13 +77,18 @@
     			</f:ajax>
     		</h:form>
     		
-    		<h:form>
-    			<h:outputText value="+ " />
-    			<p:commandLink id="manageTicketLink" action="#{menuCmd.gotoMyAccount}">
+    		<h:form id="manageticket">
+        		<f:ajax render=":centerpanel" execute="@this">
+        		<h:outputText value="+ " />
+                <h:commandLink id="manageTicketLink" action="#{menuCmd.changeCenterPanel}" >
         			<h:outputText value="Manage" />
-    			</p:commandLink>
+        			<f:param name="input" value="newSupportEvent.xhtml"/>
+    			</h:commandLink>
+    			</f:ajax>
     		</h:form>
+ 
         </p:tab>
+        <!-- 
         <p:tab title="Support">
             <h:form id="createsupportevent">
         		<f:ajax render=":centerpanel" execute="@this">
@@ -106,6 +111,7 @@
     		</h:form>
             
         </p:tab>
+         -->
         <p:tab title="Finance">
             <h:form id="receivepayment">
         		<f:ajax render=":centerpanel" execute="@this">
