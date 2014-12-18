@@ -13,10 +13,11 @@ import javax.faces.bean.ViewScoped;
 import beans.GetTicketDetailsRequest;
 import beans.GetTicketDetailsResponse;
 import daoEntities.Company;
+import daoEntities.SupportEvent;
 import daoEntities.TicketAssignment;
 import daoEntities.Tickets;
+import daoImpl.SupportEventDao;
 import daoImpl.TicketDaoImpl;
-
 
 @ManagedBean
 @SessionScoped
@@ -26,17 +27,14 @@ public class MobileDisplay implements Serializable {
 		return displayList;
 	}
 
-
 	public void setDisplayList(List<DisplayBean> displayList) {
 		this.displayList = displayList;
 	}
 
-
 	List<DisplayBean> displayList = new ArrayList<DisplayBean>();
-	
-	
-	public String loadDisplay(){
-		
+
+	public String loadDisplay() {
+
 		TicketDaoImpl impl = new TicketDaoImpl();
 		GetTicketDetailsResponse response = null;
 		try {
@@ -46,35 +44,59 @@ public class MobileDisplay implements Serializable {
 			e.printStackTrace();
 		}
 		displayList = new ArrayList<DisplayBean>();
-		for(Tickets ticket:response.getTicketList()){
+		for (Tickets ticket : response.getTicketList()) {
 			DisplayBean display = new DisplayBean();
 			display.setTicketId(ticket.getId());
 			display.setTicketDescription(ticket.getDescription());
-			
-			
-			
+
 			display.setTicketCreated(ticket.getTicketCreated().toString());
-			if(null != ticket.getTicketEnded()){
+			if (null != ticket.getTicketEnded()) {
 				display.setTicketEnded(ticket.getTicketEnded().toGMTString());
-			}else{
-				display.setTimeElapsed((new Timestamp(System.currentTimeMillis()).getTime()-ticket.getTicketCreated().getTime())+"");
+			} else {
+				display.setTimeElapsed((new Timestamp(System
+						.currentTimeMillis()).getTime() - ticket
+						.getTicketCreated().getTime())
+						+ "");
 			}
-			
-			for(Company company:response.getCompanyList()){
-				if(ticket.getCompany().equals(company.getId()))
-				display.setComapanyName(company.getName());
+
+			for (Company company : response.getCompanyList()) {
+				if (ticket.getCompany().equals(company.getId()))
+					display.setComapanyName(company.getName());
 			}
-			
-			for(TicketAssignment ticketAssign:response.getAssinmentList()){
-				if(ticket.getId().equals(ticketAssign.getTicketid()))
-				display.setAssignedTo(","+ticketAssign.getUserid()+",");;
+
+			for (TicketAssignment ticketAssign : response.getAssinmentList()) {
+				if (ticket.getId().equals(ticketAssign.getTicketid()))
+					display.setAssignedTo("," + ticketAssign.getUserid() + ",");
+				;
 			}
-			displayList.add(display);
+			SupportEventDao supDao = new SupportEventDao();
+			List<uiBeans.SupportEvent> sp = new ArrayList<uiBeans.SupportEvent>();
+			try {
+				for (SupportEvent as : supDao.getsuppportEvent(display
+						.getTicketId())) {
+					uiBeans.SupportEvent s = new uiBeans.SupportEvent();
+					s.setCreatedBy(as.getCreatedBy());
+					s.setSupportEventCreated(as.getSupportEventCreated());
+					s.setSupportEventEnded(as.getSupportEventEnded());
+					s.setSupportEventID(as.getSupportEventID());
+					s.setTicketID(as.getTicketID());
+					if (null != as.getSupportEventEnded()) {
+						s.setEnded(true);
+					}
+					sp.add(s);
+				}
+				display.setList(sp);
+				display.setAssignList(impl.getAssigmentDetails(display
+						.getTicketId()));
+				displayList.add(display);
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
+
 		return "continue";
 	}
-	
+
 }

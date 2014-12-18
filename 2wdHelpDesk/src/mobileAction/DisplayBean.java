@@ -20,7 +20,9 @@ public class DisplayBean implements Serializable {
 	private String timeElapsed;
 	
 	private String comapanyName;
-
+	
+	
+	private List<String> assignList = new ArrayList<String>();
 
 	private List<uiBeans.SupportEvent> list = new ArrayList<uiBeans.SupportEvent>();
 
@@ -86,6 +88,14 @@ public class DisplayBean implements Serializable {
 
 	public void setTimeElapsed(String timeElapsed) {
 		this.timeElapsed = timeElapsed;
+	}
+
+	public List<String> getAssignList() {
+		return assignList;
+	}
+
+	public void setAssignList(List<String> assignList) {
+		this.assignList = assignList;
 	}
 	
 	

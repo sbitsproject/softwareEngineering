@@ -8,22 +8,23 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 <f:view renderKitId="PRIMEFACES_MOBILE">
 	<h:head>
-	
-	<title>2wd-Mobile Tickets</title>
+
+		<title>2wd-Mobile Tickets</title>
 	</h:head>
 	<h:body>
 		<pm:page>
-		<pm:header title="2wd-HelpDesk" >
-			<p:commandButton value="Menu" type="button" icon="ui-icon-home"
-				id="home" styleClass="ui-btn-inline" />
+			<pm:header title="2wd-HelpDesk">
+				<p:commandButton value="Menu" type="button" icon="ui-icon-home"
+					id="home" styleClass="ui-btn-inline" />
 
-		</pm:header>
-		
-		<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
+			</pm:header>
+
+			<p:overlayPanel for="home" widgetVar="pnl-basic" at="left"
 				showEffect="overlay">
 				<h2>Menu</h2>
 				<p:menu>
-				<p:menuitem value="Home" url="http://10.114.104.3:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
+					<p:menuitem value="Home"
+						url="http://10.114.104.3:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml" />
 					<p:submenu label="Ticket">
 						<p:menuitem value="Create" url="#" />
 						<p:menuitem value="Manage" url="#" />
@@ -35,93 +36,121 @@
 				</p:menu>
 			</p:overlayPanel>
 			<pm:content>
- 
- 
- 
- 
- 
-				 <h:form id="ticketTable">
-				 		
-			 	 			<p:dataList name="ticketslist" var="ticket" value="#{mobileDisplay.displayList}" > 
-				 		<p:accordionPanel multiple="true" activeIndex="1" >		
-				 			
-				 		<p:tab title="#{ticket.ticketId}" >
-													
-													<h:outputText value="#{ticket.ticketDescription}" />
-													<h:outputText value="#{ticket.ticketCreated}" />
-													<h:outputText value="#{ticket.timeElapsed}" />
-											
-								    </p:tab>
-								    </p:accordionPanel>
-					 	</p:dataList>
-				 
-			
-				 	<!-- 	
-				 		<p:accordionPanel multiple="true" activeIndex="1" >		
-				 		<ui:repeat var="ticket" value="#{mobileDisplay.displayList}" >
-				 		<p:tab title="#{ticket.ticketId}" >
-													<h:outputText value="#{ticket.ticketDescription}" />
-													<h:outputText value="#{ticket.ticketCreated}" />
-													<h:outputText value="#{ticket.timeElapsed}" />
-											
-								    </p:tab>
-				 		</ui:repeat>
-				 		</p:accordionPanel>
- -->				 		
-				<!-- 		
-								<p:dataList  id="Tickets1" var="ticket" paginatorAlwaysVisible="true" 
-										value="#{mobileDisplay.displayList}"   paginator="true" rows="8">
-								    <f:facet name="header">
-								        Ticket List
-								    </f:facet>
-						<p:accordionPanel multiple="true" activeIndex="1" >		    
-								    <p:tab title="#{ticket.ticketId}" >
-													<h:outputText value="#{ticket.ticketDescription}" />
-													<h:outputText value="#{ticket.ticketCreated}" />
-													<h:outputText value="#{ticket.timeElapsed}" />
-											
-								    </p:tab>
-				   
-				   </p:accordionPanel>
-				   
-				</p:dataList>
 
-				
-				 	<p:dataTable id="Tickets" var="ticket"
-						value="#{mobileDisplay.displayList}"  
-						 tableStyle="table-layout:auto;width:100%;"
-						  scrollable="true"  
-						tableStyleClass="uui-table-reflow"
-						style=" border: 2px #bed6f8;">
 
-						<p:column sortBy="#{ticket.ticketId}" priority="1" style="border: 10px; !important;">
-							<f:facet name="header">  
-           					         ID  
-          					  </f:facet>
-							<h:outputText value="#{ticket.ticketId}" />
-						</p:column>
 
-						<p:column headerText="Desc"
-							sortBy="#{ticket.ticketDescription}" priority="2">
-							<h:outputText value="#{ticket.ticketDescription}" />
-						</p:column>
 
-						<p:column headerText="Assign" sortBy="#{ticket.assignedTo}"
-							priority="1">
-							<h:outputText value="#{ticket.assignedTo}" />
-						</p:column>
+				<h:form>
 
-						<p:column headerText="CreTime"
-							sortBy="#{ticket.ticketCreated}" priority="2">
-							<h:outputText value="#{ticket.ticketCreated}" />
-						</p:column>
+					<p:dataList name="ticketslist" var="ticket"
+						value="#{mobileDisplay.displayList}">
+						<p:accordionPanel multiple="true" activeIndex="1">
 
-						<p:column headerText="ElaTime" sortBy="#{ticket.timeElapsed}"
-							priority="2">
-							<h:outputText value="#{ticket.timeElapsed}" />
-						</p:column>
-					</p:dataTable> -->
+							<p:tab
+								title="Ticket Id:#{ticket.ticketId}     Created on: #{ticket.ticketCreated}">
+								<p:panelGrid columns="2" layout="grid">
+									<h:outputText value="Company Id" />
+									<h:outputText value="#{ticket.comapanyName}" />
+									<h:outputText value="Elapsed Time" />
+									<h:outputText value="#{ticket.timeElapsed}" />
+								</p:panelGrid>
+								<p:accordionPanel activeIndex="3">
+
+									<p:tab title="Ticket Assignment- Assign">
+										<p:panelGrid columns="1">
+											<p:row>
+
+												<p:outputLabel value="User Id:" for="acSimple" />
+												<p:inputText id="acSimple"
+													value="#{supportEventTest.addUser}" />
+
+
+											</p:row>
+											<p:row>
+
+												<p:commandButton value="Add user" id="addt"
+													icon="ui-icon-check" action="#{displayAction.assignUser}"
+													update=":form" ajax="false">
+													<f:param name="idVal2" value="#{ticket.ticketId}" />
+												</p:commandButton>
+											</p:row>
+										</p:panelGrid>
+									</p:tab>
+
+									<p:tab title="Ticket Assignment- Manage">
+										<p:dataTable var="assign" value="#{ticket.assignList}"
+											editable="true">
+											<p:column headerText="Assigned To">
+												<h:outputText value="#{assign}" />
+											</p:column>
+											<p:column headerText="Time Spent">
+												<h:outputText value="#{ticket.timeElapsed} min" />
+											</p:column>
+											<p:column headerText="Option">
+												<p:commandButton value="Unassign" id="edit"
+													icon="ui-icon-check" action="#{displayAction.deleteUser}"
+													update=":form" ajax="false">
+													<f:param name="idVal3" value="#{ticket.ticketId}" />
+													<f:param name="idVal4" value="#{assign}" />
+												</p:commandButton>
+											</p:column>
+										</p:dataTable>
+									</p:tab>
+									<p:tab title="Manage Support Event">
+										<p:dataTable var="support" value="#{ticket.list}"
+											editable="true">
+											<p:column headerText="SupportEventId" style="width:32px">
+												<h:outputText value="#{support.supportEventID}" />
+											</p:column>
+											<p:column headerText="CreatedBy">
+												<h:outputText value="#{support.createdBy}" />
+											</p:column>
+											<p:column headerText="Start Time">
+												<h:outputText value="#{support.supportEventCreated}" />
+
+											</p:column>
+											<p:column headerText="Stop Time" rendered="#{support.ended}">
+												<h:outputText value="#{support.supportEventEnded}" />
+											</p:column>
+											<p:column headerText="Stop Event"
+												rendered="#{!support.ended}">
+												<p:commandButton value="Stop" id="Stop" icon="ui-icon-check"
+													action="#{displayAction.stopSupportEvent}" update=":form"
+													ajax="false">
+													<f:param name="idVal1" value="#{ticket.ticketId}" />
+													<f:param name="idVal2" value="#{support.supportEventID}" />
+												</p:commandButton>
+											</p:column>
+										</p:dataTable>
+									</p:tab>
+
+									<p:tab title="Create Support Event">
+
+										<!-- 
+            			<h:form>               
+    						<p:inputTextarea rows="5" cols="30" style="width:400px;height:150px;" autoResize="false" />
+    						<h:outputText id="display" />
+						</h:form>
+						 -->
+
+										<p:commandButton value="Start" id="submit"
+											icon="ui-icon-check"
+											action="#{displayAction.checkSupportCreation}" update=":form"
+											ajax="false">
+											<f:param name="idVal" value="#{ticket.ticketId}" />
+										</p:commandButton>
+
+
+
+									</p:tab>
+								</p:accordionPanel>
+
+							</p:tab>
+						</p:accordionPanel>
+					</p:dataList>
+
 				</h:form>
+
 			</pm:content>
 		</pm:page>
 	</h:body>
