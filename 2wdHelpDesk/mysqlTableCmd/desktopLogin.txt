@@ -78,7 +78,12 @@ invoiceCreated DATE,
 amount int (255)
 );
 
-
+create table supportevents 
+(
+ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+start int not null, 
+finish int not null
+);
 
 
 
