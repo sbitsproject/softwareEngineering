@@ -103,7 +103,7 @@ function getHeight() {
          -->
         
         <p:rowExpansion  id="ticketDetail">
-        <p:accordionPanel>
+        <p:accordionPanel activeIndex="1">
         	<p:tab title="Manage Support Event">
             	<h:form id="managesupportevent">
         			 <p:dataTable var="dialogTable" value="#{ticket}">
@@ -121,22 +121,23 @@ function getHeight() {
         	</p:tab>
         	
         	<p:tab title="Create Support Event">
-            	<h:form id="createsupportevent">
-        			<p:outputPanel id="ticketDetail" style="text-align:center;">
-        		
-            		<h:form>
+            		
             			<!-- 
             			<h:form>               
     						<p:inputTextarea rows="5" cols="30" style="width:400px;height:150px;" autoResize="false" />
     						<h:outputText id="display" />
 						</h:form>
 						 -->
-						<p:commandButton value="Start" id="submit" icon="ui-icon-check" update=":form:ticketDetail" />
+						 
+		        			<p:commandButton value="Start" id="submit" icon="ui-icon-check" action="#{supportEventDriver1.checkSupportCreation}">
+								<f:param name="id" value="#{ticket.id}"/>
+								<f:param name="user" value="#{validation.username}"/>
+								<f:param name="assUser" value="#{validation.username}"/>
+							</p:commandButton>
+						
                 		<p:commandButton value="Stop" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" />            			
-            		</h:form>
             
-       			 </p:outputPanel>
-    			</h:form>
+       			
         	</p:tab>
   		</p:accordionPanel>
         </p:rowExpansion>
@@ -166,14 +167,10 @@ function getHeight() {
 			        <h:outputText value="#{supportFilterView.selectedTicket.time} min" />
 			    </p:column>
             </p:dataTable>
-            	<h:form>
-            		<h:form>               
     				<p:inputTextarea rows="5" cols="30" style="width:800px;height:300px;" autoResize="false" />
     				<h:outputText id="display" />
-					</h:form>
 					<p:commandButton value="Submit" id="submit" icon="ui-icon-check" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()"/>
                 	<p:commandButton value="Cancel" id="cancel" icon="ui-icon-closethick" update=":form:ticketDetail" oncomplete="PF('ticketDialog').hide()" />
-            	</h:form>
             
         </p:outputPanel>
     </p:dialog>
