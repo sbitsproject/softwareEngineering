@@ -75,6 +75,8 @@ create table invoiceTable
 (
 companyID int (30),
 invoiceCreated DATE,
+invoiceFrom DATE,
+invoiceTo DATE,
 amount int (255)
 );
 
