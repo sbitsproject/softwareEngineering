@@ -45,7 +45,7 @@ public class MobileDisplay implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		displayList = new ArrayList<DisplayBean>();
 		for(Tickets ticket:response.getTicketList()){
 			DisplayBean display = new DisplayBean();
 			display.setTicketId(ticket.getId());

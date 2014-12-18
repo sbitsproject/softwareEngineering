@@ -21,7 +21,7 @@
 				showEffect="overlay">
 				<h2>Menu</h2>
 				<p:menu>
-				<p:menuitem value="Home" url="http://192.168.1.5:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
+				<p:menuitem value="Home" url="http://10.114.104.3:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
 					<p:submenu label="Ticket">
 						<p:menuitem value="Create" url="#" />
 						<p:menuitem value="Manage" url="#" />
@@ -36,6 +36,7 @@
 
 
 			<h:form id="ticketForm">
+				Ticket Information
 				<pm:field>
 					<p:outputLabel for="type" value="Type:" />
 					<p:selectOneMenu id="type" value="#{tickets.type}">

@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
 <f:view renderKitId="PRIMEFACES_MOBILE">
 	<h:head>
 	
@@ -22,7 +23,7 @@
 				showEffect="overlay">
 				<h2>Menu</h2>
 				<p:menu>
-				<p:menuitem value="Home" url="http://192.168.1.5:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
+				<p:menuitem value="Home" url="http://10.114.104.3:8080/2wdHelpDesk/faces/mobile/mobileMenu.xhtml"  />
 					<p:submenu label="Ticket">
 						<p:menuitem value="Create" url="#" />
 						<p:menuitem value="Manage" url="#" />
@@ -34,9 +35,59 @@
 				</p:menu>
 			</p:overlayPanel>
 			<pm:content>
+ 
+ 
+ 
+ 
+ 
+				 <h:form id="ticketTable">
+				 		
+			 	 			<p:dataList name="ticketslist" var="ticket" value="#{mobileDisplay.displayList}" > 
+				 		<p:accordionPanel multiple="true" activeIndex="1" >		
+				 			
+				 		<p:tab title="#{ticket.ticketId}" >
+													
+													<h:outputText value="#{ticket.ticketDescription}" />
+													<h:outputText value="#{ticket.ticketCreated}" />
+													<h:outputText value="#{ticket.timeElapsed}" />
+											
+								    </p:tab>
+								    </p:accordionPanel>
+					 	</p:dataList>
+				 
+			
+				 	<!-- 	
+				 		<p:accordionPanel multiple="true" activeIndex="1" >		
+				 		<ui:repeat var="ticket" value="#{mobileDisplay.displayList}" >
+				 		<p:tab title="#{ticket.ticketId}" >
+													<h:outputText value="#{ticket.ticketDescription}" />
+													<h:outputText value="#{ticket.ticketCreated}" />
+													<h:outputText value="#{ticket.timeElapsed}" />
+											
+								    </p:tab>
+				 		</ui:repeat>
+				 		</p:accordionPanel>
+ -->				 		
+				<!-- 		
+								<p:dataList  id="Tickets1" var="ticket" paginatorAlwaysVisible="true" 
+										value="#{mobileDisplay.displayList}"   paginator="true" rows="8">
+								    <f:facet name="header">
+								        Ticket List
+								    </f:facet>
+						<p:accordionPanel multiple="true" activeIndex="1" >		    
+								    <p:tab title="#{ticket.ticketId}" >
+													<h:outputText value="#{ticket.ticketDescription}" />
+													<h:outputText value="#{ticket.ticketCreated}" />
+													<h:outputText value="#{ticket.timeElapsed}" />
+											
+								    </p:tab>
+				   
+				   </p:accordionPanel>
+				   
+				</p:dataList>
 
-				<h:form id="ticketTable">
-					<p:dataTable id="Tickets" var="ticket"
+				
+				 	<p:dataTable id="Tickets" var="ticket"
 						value="#{mobileDisplay.displayList}"  
 						 tableStyle="table-layout:auto;width:100%;"
 						  scrollable="true"  
@@ -69,7 +120,7 @@
 							priority="2">
 							<h:outputText value="#{ticket.timeElapsed}" />
 						</p:column>
-					</p:dataTable>
+					</p:dataTable> -->
 				</h:form>
 			</pm:content>
 		</pm:page>
