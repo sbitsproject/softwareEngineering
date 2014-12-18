@@ -47,6 +47,19 @@ emailID varchar(200),
 phoneNumber varchar(90)
 );
 
+
+
+
+create table ticketassignment
+(
+ticketid int,
+userid int
+
+);
+
+
+
+
 ALTER TABLE SOFTWARES MODIFY ID INTEGER PRIMARY KEY;
 ALTER TABLE SOFTWARES MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;
  ALTER TABLE DEVICES MODIFY ID INTEGER PRIMARY KEY;
