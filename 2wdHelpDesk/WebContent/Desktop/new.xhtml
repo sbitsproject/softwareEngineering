@@ -39,13 +39,12 @@ p {
 </style>
 <title>New Ticket</title>
 </h:head>
-<!--  <body style="font-size:10px">   -->
-<body>
-<h:form>
+<body style="font-size:10px">
+<h:form id="form">
     
     <p:growl id="growl" sticky="true" showDetail="true"/>
  
-   <!-- <p:wizard > -->
+   <p:wizard >
         <p:tab id="ticket" title="Ticket">
             <p:panel header="Ticket Details">
                 <p:messages />
@@ -170,12 +169,12 @@ p {
                     
                 </h:panelGrid>
       
-          <h:commandButton value="Sumbit Ticket" icon="ui-icon-check"
+          <p:commandButton value="Sumbit Ticket" id="submit" update=":form" icon="ui-icon-check"
 					action="#{createAction.saveAll}" />
 					
             </p:panel>
         </p:tab>
-   <!-- </p:wizard>  -->
+   </p:wizard> 
  
 </h:form>
   </body>

@@ -15,9 +15,9 @@ public class driver
 	private ResultSet rs = null;
 	private int cmd = 0;
 	
-	private String connectionUrl = "jdbc:mysql://localhost:3306/machine_learning";
+	private String connectionUrl = "jdbc:mysql://localhost:3306/test";
 	private String connectionUser = "root";
-	private String connectionPassword = "";
+	private String connectionPassword = "root";
 	
 	/*
 	private String connectionUrl = "jdbc:mysql://athena.ecs.csus.edu:3306/sbits";

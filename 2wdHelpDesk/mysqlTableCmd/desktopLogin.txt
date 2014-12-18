@@ -15,7 +15,6 @@ type varchar(15),
 comments varchar(500)
 );
 
-
 create table Devices (
 ID int (100),
 devicetype VARCHAR (35),
@@ -81,7 +80,12 @@ invoiceTo DATE,
 amount int (255)
 );
 
-
+create table supportevents 
+(
+ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+start int not null, 
+finish int not null
+);
 
 
 
