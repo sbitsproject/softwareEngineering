@@ -28,9 +28,9 @@ public class TicketDaoImpl {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 
-	private String connectionUrl = "jdbc:mysql://10.114.104.3:3306/test";
+	private String connectionUrl = "jdbc:mysql://localhost:3306/machine_learning";
 	private String connectionUser = "root";
-	private String connectionPassword = "root";
+	private String connectionPassword = "";
 	
 	public TicketDaoImpl() 
 	{
@@ -106,13 +106,7 @@ public class TicketDaoImpl {
 			response.getSoftwareList().add(software);
 		}
 		
-		rs = stmt.executeQuery("select * from  ticketassignment");
-		while(rs.next()){
-			assign = new TicketAssignment();
-			assign.setTicketid(rs.getString("ticketid"));
-			assign.setUserid(rs.getString("userid"));
-			response.getAssinmentList().add(assign);
-		}
+		getAssigmentDetails(response);
 		
 		rs = stmt.executeQuery("select * from  company");
 		while(rs.next()){
@@ -125,9 +119,52 @@ public class TicketDaoImpl {
 			company.setPhoneNumber(rs.getString("phoneNumber"));
 			company.setStateName(rs.getString("stateName"));
 			company.setZipcode(rs.getString("zipcode"));
+			company.setId(rs.getString("id"));
 			response.getCompanyList().add(company);
 		}
 		return response;
+	}
+
+
+	private void getAssigmentDetails(GetTicketDetailsResponse response)
+			throws SQLException {
+		TicketAssignment assign;
+		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+		stmt = conn.createStatement();
+
+		rs = stmt.executeQuery("select * from  ticketassignment");
+		while(rs.next()){
+			assign = new TicketAssignment();
+			assign.setTicketid(rs.getString("ticketid"));
+			assign.setUserid(rs.getString("userid"));
+			response.getAssinmentList().add(assign);
+		}
+	}
+	
+	public List<String> getUserDetails()throws SQLException {
+		List<String> list = new ArrayList<String>();
+		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+		stmt = conn.createStatement();
+
+		rs = stmt.executeQuery("select firstname from  user");
+		while(rs.next()){
+			list.add(rs.getString("firstname"));
+		}
+		return list;
+	}
+	
+	public List<String> getAssigmentDetails(String ticketId)
+			throws SQLException {
+		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+		stmt = conn.createStatement();
+
+		List<String> list =  new ArrayList<String>();
+		rs = stmt.executeQuery("select * from  ticketassignment where ticketId="+ticketId);
+		while(rs.next()){
+			//TicketAssignment assign = new TicketAssignment();
+			list.add(rs.getString("userid"));
+		}
+		return list;
 	}
 	
 	public SaveTicketDetailsResponse saveDetails(SaveTicketDetailsRequest request) throws SQLException{
@@ -192,7 +229,7 @@ public class TicketDaoImpl {
 	}
 
 
-	private void saveAssign(SaveTicketDetailsRequest request)
+	public void saveAssign(SaveTicketDetailsRequest request)
 			throws SQLException {
 		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 		PreparedStatement ps;
@@ -204,6 +241,18 @@ public class TicketDaoImpl {
 			ps.setString(2,assign.getUserid());
 			ps.executeUpdate();
 		}
+	}
+	
+	public void deleteAssign(TicketAssignment request)
+			throws SQLException {
+		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+		PreparedStatement ps;
+		String query;
+		query = " delete from ticketAssignment where ticketid=? and userid=?";
+		ps = conn.prepareStatement(query);
+			ps.setString(1, request.getTicketid());
+			ps.setString(2,request.getUserid());
+			ps.executeUpdate();
 	}
 
 

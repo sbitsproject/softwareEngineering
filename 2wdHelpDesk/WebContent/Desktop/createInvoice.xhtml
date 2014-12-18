@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:head>
+		<title>System Create Support Event</title>
+	</h:head>
+	<body>
+
+		<script>
+function getWidth() {
+    return window.innerWidth;
+}
+function getHeight() {
+    return window.innerHeight;
+}
+</script>
+
+
+		<h:form id="form">
+			<p:accordionPanel activeIndex="3">
+
+				<p:tab title="Ticket Assignment- Assign">
+					<p:panelGrid columns="1">
+
+						<p:row>
+
+							<p:commandButton value="Create Invoice" id="addt"
+								icon="ui-icon-check" action="#{invoiceAction.createInvoice()}"
+								update=":form" ajax="false">
+							</p:commandButton>
+						</p:row>
+						<p:row>
+
+							<p:commandButton value="Display Invoice" id="asdaddt"
+								icon="ui-icon-check" action="#{invoiceAction.displayInvoices()}"
+								update=":form" ajax="false">
+							</p:commandButton>
+						</p:row>
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="Ticket Assignment- Assign">
+					<p:dataTable id="tickets" var="invoice"
+						value="#{invoiceval.invoicelist}" widgetVar="ticketsTable"
+						rows="9" 
+						emptyMessage="No tickets found with given criteria"
+						paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15">
+
+						<p:column headerText="Company Id">
+							<h:outputText value="#{invoice.companyID}" />
+						</p:column>
+						<p:column headerText="Created on">
+							<h:outputText value="#{invoice.invoiceCreated}" />
+						</p:column>
+						<p:column headerText="Amount in dollars $">
+							<h:outputText value="#{invoice.amount}" />
+						</p:column>
+						<p:column headerText="Invoice From">
+							<h:outputText value="#{invoice.invoiceFrom}" />
+						</p:column>
+						<p:column headerText="Invoice To">
+							<h:outputText value="#{invoice.invoiceTo}" />
+						</p:column>
+					</p:dataTable>
+
+				</p:tab>
+			</p:accordionPanel>
+		</h:form>
+
+	</body>
+</ui:composition>

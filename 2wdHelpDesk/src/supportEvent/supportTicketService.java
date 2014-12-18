@@ -1,6 +1,8 @@
 package supportEvent;
 
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,22 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 //import org.primefaces.showcase.domain.Ticket;
 
+
+
+
+
+
+
+
+import beans.GetTicketDetailsRequest;
+import beans.GetTicketDetailsResponse;
+import daoEntities.Company;
+import daoEntities.SupportEvent;
+import daoEntities.TicketAssignment;
+import daoEntities.Tickets;
+import daoImpl.SupportEventDao;
+import daoImpl.TicketDaoImpl;
+import mobileAction.DisplayBean;
 import mobileAction.MobileDisplay;
 
 
@@ -51,12 +69,47 @@ public class supportTicketService implements Serializable {
         client[9] = "Dijkstra";
     }
      
-    public List<supportTicket> createTickets(int size) {
-        List<supportTicket> list = new ArrayList<supportTicket>();
-        for(int i = 0 ; i < size ; i++) {
-            list.add(new supportTicket(getRandomId(), getRandomClient(), getRandomDate(), getRandomAssigned(), getRandomTime(), getRandomPriorityState()));
-        }
-         
+    public List<supportTicket> createTickets(int size) throws SQLException {
+    	TicketDaoImpl dao = new TicketDaoImpl();
+    	GetTicketDetailsResponse response = dao.retrieveAllDetails(new GetTicketDetailsRequest());
+    	 List<supportTicket> list = new ArrayList<supportTicket>();
+    	for(Tickets ticket:response.getTicketList()){
+    		String id,compan = "",createdDate,assign = "",elapsedTime = "",priority;
+			id =ticket.getId();
+			priority = ticket.getPriority();
+			createdDate = ticket.getTicketCreated().toString();
+			if(null != ticket.getTicketEnded()){
+				//display.setTicketEnded(ticket.getTicketEnded().toGMTString());
+			}else{
+				elapsedTime = new Timestamp(System.currentTimeMillis()).getTime()-ticket.getTicketCreated().getTime()+"";
+			}
+			
+			for(Company company:response.getCompanyList()){
+				if(ticket.getCompany().equals(company.getId()))
+				compan = company.getName();
+			}
+			
+			for(TicketAssignment ticketAssign:response.getAssinmentList()){
+				if(ticket.getId().equals(ticketAssign.getTicketid()))
+				assign += ticketAssign.getUserid()+",";
+			}
+			SupportEventDao supDao = new SupportEventDao();
+			List<uiBeans.SupportEvent> sp = new ArrayList<uiBeans.SupportEvent>();
+        	for(SupportEvent as:supDao.getsuppportEvent(id)){
+        		uiBeans.SupportEvent s = new uiBeans.SupportEvent();
+        		s.setCreatedBy(as.getCreatedBy());
+        		s.setSupportEventCreated(as.getSupportEventCreated());
+        		s.setSupportEventEnded(as.getSupportEventEnded());
+        		s.setSupportEventID(as.getSupportEventID());
+        		s.setTicketID(as.getTicketID());
+        		if(null!=as.getSupportEventEnded()){
+        			s.setEnded(true);
+        		}
+        		sp.add(s);
+        	}
+        	
+			list.add(new supportTicket(id, compan, createdDate, assign, elapsedTime, priority,sp,dao.getAssigmentDetails(id)));
+		}
         return list;
     }
      

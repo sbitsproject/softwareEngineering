@@ -97,3 +97,7 @@ ALTER TABLE SOFTWARES MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;
  ALTER TABLE SUPPORTEVENT MODIFY SUPPORTEVENTID INTEGER NOT NULL AUTO_INCREMENT;
  
  
+ Alter table ticketassignment modify ticketid varchar(100);
+
+
+ Alter table ticketassignment modify userid varchar(100);

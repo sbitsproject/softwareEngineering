@@ -53,13 +53,13 @@ public class SupportEventDao {
 
 	
 
-	public List<SupportEvent> getsuppportEvent() throws SQLException {
+	public List<SupportEvent> getsuppportEvent(String ticketId) throws SQLException {
 		List<SupportEvent> support = new ArrayList<SupportEvent>();
 		conn = DriverManager.getConnection(connectionUrl, connectionUser,
 				connectionPassword);
 		stmt = conn.createStatement();
 		
-		rs = stmt.executeQuery("select supportEventID ,createdBy,supportEventCreated ,supportEventEnded,TicketID from supportevent");
+		rs = stmt.executeQuery("select supportEventID ,createdBy,supportEventCreated ,supportEventEnded,TicketID from supportevent where ticketId = "+ticketId);
 		while (rs.next()) {
 			SupportEvent sup = new SupportEvent();
 			sup.setCreatedBy(rs.getString("createdBy"));
@@ -76,12 +76,26 @@ public class SupportEventDao {
 		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 		PreparedStatement ps;
 		String query;
-		query = " insert into tickets(createdBy,supportEventCreated ,supportEventEnded,TicketID) values (?,current_timestamp,null,?)";
+		query = " insert into supportevent(createdBy,supportEventCreated ,supportEventEnded,TicketID) values (?,current_timestamp,null,?)";
 		ps = conn.prepareStatement(query);
 			ps.setString(1, support.getCreatedBy());
 			ps.setString(2,support.getTicketID());
 		ps.executeUpdate();
 		return true;
 	}
+	
+	public boolean updateSupportEvent(SupportEvent support) throws SQLException{
+		conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+		PreparedStatement ps;
+		String query;
+		query = " update supportevent set supportEventEnded = current_timestamp where supporteventid = ?";
+		ps = conn.prepareStatement(query);
+			ps.setString(1, support.getSupportEventID());
+		
+		ps.executeUpdate();
+		return true;
+	}
+	
+	
 	
 	}

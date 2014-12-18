@@ -1,6 +1,8 @@
 package mobileAction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayBean implements Serializable {
 
@@ -18,6 +20,17 @@ public class DisplayBean implements Serializable {
 	private String timeElapsed;
 	
 	private String comapanyName;
+
+
+	private List<uiBeans.SupportEvent> list = new ArrayList<uiBeans.SupportEvent>();
+
+	public List<uiBeans.SupportEvent> getList() {
+		return list;
+	}
+
+	public void setList(List<uiBeans.SupportEvent> list) {
+		this.list = list;
+	}
 
 	public String getComapanyName() {
 		return comapanyName;
