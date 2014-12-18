@@ -10,6 +10,8 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 //import org.primefaces.showcase.domain.Ticket;
 
+import mobileAction.MobileDisplay;
+
 
 @ManagedBean(name = "ticketService")
 @ApplicationScoped
@@ -20,6 +22,8 @@ public class supportTicketService implements Serializable {
     private final static String[] client;
     
     private final static String[] priorityList = {"High", "Medium", "Low"};
+    
+    private static String[] tickets;
     
     static {
     	assigned = new String[10];
@@ -92,4 +96,13 @@ public class supportTicketService implements Serializable {
     public List<String> getPriorityList() {
         return Arrays.asList(priorityList);
     }
+    
+    //public List<String> getDB() {
+    	//static String[] temp = MobileDisplay.getDisplayList();
+        //return Arrays.asList(temp);
+    //}
+    
+    
+     
+    
 }
